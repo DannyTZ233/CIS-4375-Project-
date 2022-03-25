@@ -2,9 +2,9 @@
 
 set up:
 # virtual environment set up.
-	python -m venv cis4375_backend
+	python3 -m venv cis4375_backend
 # activate virtual environment
-	.\ cis4375_backend\scripts\activate.bat (windows)
+	.\cis4375_backend\scripts\activate.bat (windows)
 	source venv/bin/activate (Mac)
 # deactivate environment
 	deactivate
