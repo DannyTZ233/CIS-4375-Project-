@@ -40,8 +40,8 @@ class EmployeeLeave(Resource):
         return {'message': 'Employee leave type deleted',
                 'Leave type': empleave_schema.dump(leavetype)}
 
-## Not sure if their is enough leave types to make this relevant, if so needs to be corrected
-    """def put(self, type):
+
+    def put(self, type):
         data = EmployeeLeave.parser.parse_args()
 
         leavetype = EmpLeaveModel.find_by_type(type)
@@ -54,7 +54,7 @@ class EmployeeLeave(Resource):
 
         leavetype.save_to_db()
 
-        return empleave_schema.dump(leavetype), 201"""
+        return empleave_schema.dump(leavetype), 201
 
 
 class EmpLeaveList(Resource):
