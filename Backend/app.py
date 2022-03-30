@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
+from resources.employeeleave import EmployeeLeave, EmpLeaveList
 from db import db
 from ma import ma
 from resources.store import Store, StoreList
@@ -22,6 +23,8 @@ def create_tables():
 api.add_resource(Store, '/store/<string:name>')
 api.add_resource(StoreList, '/stores')
 
+api.add_resource(EmployeeLeave, '/empleave/<int:type>')
+api.add_resource(EmpLeaveList, '/empleaveall')
 
 if __name__ == '__main__':
     db.init_app(app)
