@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from db import db
 from ma import ma
 from resources.store import Store, StoreList
+from resources.employeequit import EmployeeQuit, EmployeeQuitList
 
 
 app = Flask(__name__)
@@ -22,6 +23,9 @@ def create_tables():
 api.add_resource(Store, '/store/<string:name>')
 api.add_resource(StoreList, '/stores')
 
+# employee quit routes
+api.add_resource(EmployeeQuit, '/employeequit/<string:category>')
+api.add_resource(EmployeeQuitList, '/employeequit')
 
 if __name__ == '__main__':
     db.init_app(app)
