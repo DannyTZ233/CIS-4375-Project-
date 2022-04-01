@@ -23,7 +23,7 @@ def create_tables():
 api.add_resource(Store, '/store/<string:name>')
 api.add_resource(StoreList, '/stores')
 
-api.add_resource(EmployeeLeave, '/empleave/<int:type>')
+api.add_resource(EmployeeLeave, '/empleave/<string:type>')
 api.add_resource(EmpLeaveList, '/empleaveall')
 
 if __name__ == '__main__':
