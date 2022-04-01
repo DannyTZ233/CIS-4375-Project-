@@ -8,7 +8,11 @@ empleave_list_schema = EmpLeaveSchema(many=True)
 
 class EmployeeLeave(Resource):
     parser = reqparse.RequestParser()
-    
+    parser.add_argument('type',
+                        type=str,
+                        required=True,
+                        help="every store must have an address!"
+                        )
     def get(self, type):
         leavetype = EmpLeaveModel.find_by_type(type)
         if leavetype:
@@ -20,9 +24,9 @@ class EmployeeLeave(Resource):
             return {'message': "A leave type with type '{}' already exists.".format(type)}, 400
 
         # get input data
-        leavetype = EmployeeLeave.parser.parse_args()
+        # data = EmployeeLeave.parser.parse_args()
 
-        #leavetype = EmpLeaveModel(type, data['address'])
+        leavetype = EmpLeaveModel(type)
         try:
             leavetype.save_to_db()
         except Exception as e:
