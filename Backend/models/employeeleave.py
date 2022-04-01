@@ -14,6 +14,7 @@ class EmpLeaveModel(db.Model):
     def show_all(cls):
         return cls.query()
 
+    @classmethod
     def find_by_type(cls, type):
         return cls.query.filter_by(type=type).first()
 
