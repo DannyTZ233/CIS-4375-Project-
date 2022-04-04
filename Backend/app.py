@@ -5,6 +5,9 @@ from db import db
 from ma import ma
 from resources.store import Store, StoreList
 from resources.reward import Reward, RewardList
+from resources.custredeem import Redeem, ReedemList
+
+
 
 
 app = Flask(__name__)
@@ -25,6 +28,9 @@ api.add_resource(StoreList, '/stores')
 
 api.add_resource(RewardList, '/rewards')
 api.add_resource(Reward, '/reward/<string:type>')
+
+api.add_resource(ReedemList, '/CustomerRedeem')
+api.add_resource(Redeem, '/CustomerRedeem/<string:dish_id>')
 
 
 if __name__ == '__main__':
