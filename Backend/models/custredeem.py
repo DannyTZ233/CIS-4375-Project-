@@ -5,7 +5,7 @@ class ReedemModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     dish_id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.String(100))
+    date = db.Column(db.Date)
 
     def __init__(self, dish_id, date):
         self.dish_id = dish_id
