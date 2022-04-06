@@ -5,6 +5,8 @@ from db import db
 from ma import ma
 from resources.store import Store, StoreList
 from resources.employeequit import EmployeeQuit, EmployeeQuitList
+from resources.redeem import Redeem, RedeemList
+from resources.dishcategory import DishCategory, DishCategoryList
 
 
 app = Flask(__name__)
@@ -26,6 +28,14 @@ api.add_resource(StoreList, '/stores')
 # employee quit routes
 api.add_resource(EmployeeQuit, '/employeequit/<string:category>')
 api.add_resource(EmployeeQuitList, '/employeequit')
+
+# redeem table routes
+api.add_resource(Redeem, '/redeem/<integer:redeem_id>')
+api.add_resource(RedeemList, '/redeem')
+
+# dish category routes
+api.add_resource(DishCategory, '/dishcategory/<string:dish_category>')
+api.add_resource(DishCategoryList, '/dishcategory')
 
 if __name__ == '__main__':
     db.init_app(app)
