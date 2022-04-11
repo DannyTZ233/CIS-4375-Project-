@@ -1,0 +1,72 @@
+/* Style tittle */
+h1 {
+    font-size: 50px;
+    text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+legend {
+  text-align: left;
+  font-weight: 700;
+  padding-left: 0;
+}
+
+fieldset { 
+  width: 45%;
+  border: 1px solid lightgray;
+  float: center;
+  margin:auto;
+  padding: 20px;
+  
+ }
+ select {
+  width: 85%;
+  padding: 10px 10px;
+  margin: 8px 0;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+} 
+
+
+table {
+  border-collapse: collapse;
+  width: 85%;
+  height: 10%;
+
+}
+th, td {
+  text-align: center;
+}
+
+input[type=radio] {
+  display: inline-block;
+  margin-left: 20px ;
+
+}
+
+textarea {
+  vertical-align: top;
+  height: 10%;
+  width: 85%;
+}
+
+.button{
+  margin: auto;
+  padding: 10px 15px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px #999;
+  display: flex;
+  display: grid;
+}
+
+
+
