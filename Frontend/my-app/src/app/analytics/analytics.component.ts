@@ -9,7 +9,15 @@ export class AnalyticsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  isShowing= false;
+  ShowServiceRatings(){
+    this.isShowing=!this.isShowing;
   }
 
+  ngOnInit(): void {
+    }
+
+
+ 
 }
+
