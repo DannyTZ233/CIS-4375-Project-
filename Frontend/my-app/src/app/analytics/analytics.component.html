@@ -1,1 +1,11 @@
-<p>analytics works!</p>
+<html>
+    <link rel="stylesheet" href="analytics.component.css">
+    <br><h1 id="tittle">Analytics</h1> <br> <br> <br>
+    <button (click)="ShowServiceRatings()" type="button">Service Ratings</button> 
+    <div *ngIf="ShowServiceRatings()"> 
+        <!-- Show Something -->
+    </div>
+    <button type="button">Enviroment Ratings</button> 
+    <button type="button">Food Quality Ratings</button> 
+    <button type="button">Age Group</button> <br>
+</html>
