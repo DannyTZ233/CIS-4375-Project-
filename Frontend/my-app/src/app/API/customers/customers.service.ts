@@ -17,9 +17,9 @@ export class CustomersService {
     return this.http.get<Customers>(this.baseUrl+'/customers')
   }
 
-  postCustomers(fName:any, lName:any, phone:any, email:any, zip:any){
+  postCustomers(first_name:any, last_name:any, phone:any, email:any, zip:any){
     return this.http.post<any>(this.baseUrl+'/customer',
-    {fName, lName, phone, email, zip})
+    {first_name, last_name, phone, email, zip})
     .pipe(map(Customers => {
       return Customers;
     }))

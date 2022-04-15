@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Api
-#from flask_cors import CORS , cross_origin
+from flask_cors import CORS , cross_origin
 
 # employee
 from resources.store import Store, StoreList
@@ -32,7 +32,7 @@ from resources.customer_redeem import CustomerRedeem, CustomerRedeemList
 
 app = Flask(__name__)
 
-#CORS(app)
+CORS(app)
 api = Api(app)
 
 

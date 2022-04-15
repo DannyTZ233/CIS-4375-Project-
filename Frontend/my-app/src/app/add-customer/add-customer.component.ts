@@ -19,8 +19,8 @@ export class AddCustomerComponent implements OnInit {
   ) { 
 
     this.angForm = this.fb.group({
-      fName: ['', Validators.required],
-      lName: ['', Validators.required],
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
       phone: ['', Validators.required],
       email: ['', Validators.required],
       zip: ['', Validators.required]
@@ -32,14 +32,14 @@ export class AddCustomerComponent implements OnInit {
 
   addCustomer(forms: any){
     this.customersService.postCustomers(
-      this.angForm.value.fName, 
-      this.angForm.value.lName, 
+      this.angForm.value.first_name, 
+      this.angForm.value.last_name, 
       this.angForm.value.phone, 
       this.angForm.value.email, 
       this.angForm.value.zip)
       .pipe(first())
       .subscribe( data => {
-        this.route.navigate(['/customers'])
+        this.route.navigate(['/customer-info'])
       });
   }
 
