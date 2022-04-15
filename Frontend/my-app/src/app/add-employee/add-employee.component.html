@@ -1,0 +1,68 @@
+<div class="container extra_container">
+    <div class="row">
+        <div class="md-col-12">Add Employee</div>
+    </div>
+    <form [formGroup]="angForm" (ngSubmit)="addEmployee(angForm)" autocomplete="off">
+
+        <div class="row">
+            <div class="col-md-6">First Name</div>
+            <div class="col-md-6"><input type="text" class="form-control" name="fName" formControlName="fName"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">Last Name</div>
+            <div class="col-md-6"><input type="text" class="form-control" name="lName" formControlName="lName"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">Phone Number</div>
+            <div class="col-md-6"><input type="tel" class="form-control" name="phone" formControlName="phone"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">Email Address</div>
+            <div class="col-md-6"><input type="email" class="form-control" name="email" formControlName="email"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">Join Date</div>
+            <div class="col-md-6"><input type="date" class="form-control" name="zip" formControlName="zip"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">Comment</div>
+            <div class="col-md-6"><input type="text" class="form-control" name="comment" formControlName="comment"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">Job Title</div>
+            <select class="form-control"
+            (change)="changeJob($event)"
+            name="jobTitle"
+            formControlName="jobTitle">
+                <option value="">--Choose Job Title--</option>
+                <option *ngFor="let title of Title" [value]="title.id">
+                    {{ title.category }}
+                </option>
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">Store</div>
+            <select class="form-control"
+            (change)="changeStore($event)"
+            name="store"
+            formControlName="store">
+                <option value="">--Choose Store--</option>
+                <option *ngFor="let store of Store" [value]="store.id">
+                    {{ store.name }}
+                </option>
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12"><input type="submit" class="btn btn-warning" name="submit"></div>
+        </div>
+
+    </form>
+</div>

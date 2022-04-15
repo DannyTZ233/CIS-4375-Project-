@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LongSurveyComponent } from './long-survey/long-survey.component';
@@ -12,6 +11,10 @@ import { EmployeeScheduleComponent } from './employee-schedule/employee-schedule
 import { EmployeeInfoComponent } from './employee-info/employee-info.component';
 import { EmployeeTimesheetComponent } from './employee-timesheet/employee-timesheet.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,11 +27,16 @@ import { AnalyticsComponent } from './analytics/analytics.component';
     EmployeeScheduleComponent,
     EmployeeInfoComponent,
     EmployeeTimesheetComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    AddCustomerComponent,
+    AddEmployeeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

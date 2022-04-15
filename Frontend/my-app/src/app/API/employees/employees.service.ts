@@ -17,7 +17,14 @@ export class EmployeesService {
     return this.http.get<Employees>(this.baseUrl+'/employees')
   }
 
-  postEmployees(){}
+  postEmployees(fName:any, lName:any, phone:any, email:any, joinDate:any, quitDate:any, comment:any, empQuitId:any, jobTitleId: any, storeId: any ){
+    return this.http.post<any>(this.baseUrl+'/employee',
+    {fName, lName, phone, email, joinDate, quitDate, comment, empQuitId, jobTitleId, storeId })
+    .pipe(map(Employees => {
+      return Employees;
+    }))
+  }
+
   updateEmployees(){}
   deleteEmployees(){}
 }

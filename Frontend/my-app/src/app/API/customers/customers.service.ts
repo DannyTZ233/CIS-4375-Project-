@@ -17,7 +17,14 @@ export class CustomersService {
     return this.http.get<Customers>(this.baseUrl+'/customers')
   }
 
-  postCustomers(){}
+  postCustomers(fName:any, lName:any, phone:any, email:any, zip:any){
+    return this.http.post<any>(this.baseUrl+'/customer',
+    {fName, lName, phone, email, zip})
+    .pipe(map(Customers => {
+      return Customers;
+    }))
+  }
+
   updateCustomers(){}
   deleteCustomers(){}
 }

@@ -9,6 +9,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { EmployeeInfoComponent } from './employee-info/employee-info.component';
 import { EmployeeScheduleComponent } from './employee-schedule/employee-schedule.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
 
 const routes: Routes = [
 { path: '', component: HomePageComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
 { path: 'employee-info', component: EmployeeInfoComponent },
 { path: 'schedule', component: EmployeeScheduleComponent },
 { path: 'analytics', component: AnalyticsComponent },
+{ path: 'add-customer', component: AddCustomerComponent },
+{ path: 'add-employee', component: AddEmployeeComponent },
 ];
 
 @NgModule({
