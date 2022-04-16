@@ -9,6 +9,11 @@ class EnvironmentReviewQuestion(Resource):
                         # required=True,
                         help="required"
                         )
+    parser.add_argument('environment_review_question_id',
+                        type=str,
+                        # required=True,
+                        help="required"
+                        )
 
     def get(self, id):
         query = f"SELECT * FROM environment_review_question WHERE environment_review_question_id= '{id}'"
@@ -41,6 +46,20 @@ class EnvironmentReviewQuestion(Resource):
         else:
             return {'message': 'question not found'}, 404
         return {'message': 'record deleted'}
+
+    def put(self):
+        data = EnvironmentReviewQuestion.parser.parse_args()
+        query = f"SELECT * FROM environment_review_question WHERE environment_review_question_id= '{data['environment_review_question_id']}'"
+        res = execute_read_query_dict(db_conn, query)
+        if res:
+            update_query = f"""
+                UPDATE environment_review_question
+                SET env_question = '{data['question']}'
+                WHERE environment_review_question_id = '{data['environment_review_question_id']}'
+            """
+            execute_query(db_conn, update_query)
+            return {"message": "record updated"}, 201
+        return {"message": "record not found"}, 404
 
 
 class EnvironmentReviewQuestionList(Resource):
