@@ -104,7 +104,9 @@ class EmployeeScheduleList(Resource):
                 JOIN job_title as jt
                 ON e.job_title_id = jt.job_title_id """
         res = execute_read_query_dict(db_conn, query)
+        print(res[0]['log_datetime'])
         for i in res:
             if i['log_datetime'] != None:
-                i['log_datetime'] = i['log_datetime'].strftime("%m/%d/%Y")
+                i['log_datetime'] = i['log_datetime'].strftime(
+                    "%m/%d/%Y, %H:%M:%S ")
         return {"employees": res}
