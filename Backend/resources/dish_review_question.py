@@ -4,7 +4,13 @@ from db import *
 
 class DishReviewQuestion(Resource):
     parser = reqparse.RequestParser()
+
     parser.add_argument('question',
+                        type=str,
+                        # required=True,
+                        help="required"
+                        )
+    parser.add_argument('dish_review_question_id',
                         type=str,
                         # required=True,
                         help="required"
@@ -41,6 +47,20 @@ class DishReviewQuestion(Resource):
         else:
             return {'message': 'question not found'}, 404
         return {'message': 'record deleted'}
+
+    def put(self):
+        data = DishReviewQuestion.parser.parse_args()
+        query = f"SELECT * FROM dish_review_question WHERE dish_review_question_id= '{data['dish_review_question_id']}'"
+        res = execute_read_query_dict(db_conn, query)
+        if res:
+            update_query = f"""
+                UPDATE dish_review_question
+                SET dish_question = '{data['question']}'
+                WHERE dish_review_question_id = '{data['dish_review_question_id']}'
+            """
+            execute_query(db_conn, update_query)
+            return {"message": "record updated"}, 201
+        return {"message": "record not found"}, 404
 
 
 class DishReviewQuestionList(Resource):
