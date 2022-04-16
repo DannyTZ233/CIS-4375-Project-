@@ -14,7 +14,7 @@ export class CustomersService {
   }
 
   getCustomers(){
-    return this.http.get<Customers>(this.baseUrl+'/customers')
+    return this.http.get<Customers[]>(this.baseUrl+'/customers')
   }
 
   postCustomers(first_name:any, last_name:any, phone:any, email:any, zip:any){

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { CustomersService } from '../API/customers/customers.service';
 
 @Component({
   selector: 'app-customer-info',
@@ -8,9 +9,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CustomerInfoComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  customers: any;
+
+  constructor(private route: Router,
+    private customersService: CustomersService) { }
 
   ngOnInit(): void {
+    this.customersService.getCustomers()
+    .subscribe((data:any)=>{
+      this.customers=data.customers;
+    })
   }
 
 }
