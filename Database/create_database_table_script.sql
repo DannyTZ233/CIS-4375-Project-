@@ -54,7 +54,7 @@ CREATE TABLE employee(
     e_phone varchar(20) not null,
     e_email varchar(50) not null,
     join_date date,
-    quit_date date null,
+    quit_date VARCHAR(50) null,
     e_comment VARCHAR(200) null,
     employee_quit_id int null,
     job_title_id int null,
