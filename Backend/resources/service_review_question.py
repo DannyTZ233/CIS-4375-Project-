@@ -10,6 +10,12 @@ class ServiceReviewQuestion(Resource):
                         help="required"
                         )
 
+    parser.add_argument('service_review_question_id',
+                        type=str,
+                        # required=True,
+                        help="required"
+                        )
+
     def get(self, id):
         query = f"SELECT * FROM service_review_question WHERE service_review_question_id= '{id}'"
         res = execute_read_query_dict(db_conn, query)
@@ -41,6 +47,20 @@ class ServiceReviewQuestion(Resource):
         else:
             return {'message': 'question not found'}, 404
         return {'message': 'record deleted'}
+
+    def put(self):
+        data = ServiceReviewQuestion.parser.parse_args()
+        query = f"SELECT * FROM service_review_question WHERE service_review_question_id= '{data['service_review_question_id']}'"
+        res = execute_read_query_dict(db_conn, query)
+        if res:
+            update_query = f"""
+                UPDATE service_review_question
+                SET service_question = '{data['question']}'
+                WHERE service_review_question_id = '{data['service_review_question_id']}'
+            """
+            execute_query(db_conn, update_query)
+            return {"message": "record updated"}, 201
+        return {"message": "record not found"}, 404
 
 
 class ServiceReviewQuestionList(Resource):
