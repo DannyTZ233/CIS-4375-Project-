@@ -20,7 +20,11 @@ class Customer(Resource):
                         # required=True,
                         # help="required"
                         )
-
+    parser.add_argument('customer_id',
+                        type=str,
+                        # required=True,
+                        # help="required"
+                        )
     parser.add_argument('last_name',
                         type=str,
                         # required=True,
@@ -69,8 +73,23 @@ class Customer(Resource):
     def delete(self, id):
         pass
 
-    def put(self, id):
-        pass
+    def put(self):
+        data = Customer.parser.parse_args()
+
+        query = f"SELECT * FROM customer_info WHERE customer_id = '{data['customer_id']}'"
+        res = execute_read_query_dict(db_conn, query)
+        if res:
+            update_query = f"""UPDATE customer_info
+                                SET 
+                                first_name = '{data['first_name']}',
+                                last_name = '{data['last_name']}',
+                                phone = '{data['phone']}',
+                                email = '{data['email']}',
+                                zip = '{data['zip']}'
+                                WHERE customer_id = '{data['customer_id']}'"""
+            execute_query(db_conn, update_query)
+            return {"message": "record updated"}, 201
+        return {"message": "record not found"}, 404
 
 
 class CustomerList(Resource):
