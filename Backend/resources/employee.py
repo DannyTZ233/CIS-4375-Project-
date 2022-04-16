@@ -1,6 +1,8 @@
 
 from flask_restful import Resource, reqparse
 from db import *
+import re
+from datetime import date
 
 
 class Employee(Resource):
@@ -58,6 +60,26 @@ class Employee(Resource):
                         # required=True,
                         # help="required"
                         )
+    parser.add_argument('s_name',
+                        type=str,
+                        # required=True,
+                        # help="required"
+                        )
+    parser.add_argument('jt_category',
+                        type=str,
+                        # required=True,
+                        # help="required"
+                        )
+    parser.add_argument('eq_category',
+                        type=str,
+                        # required=True,
+                        # help="required"
+                        )
+    parser.add_argument('emp_id',
+                        type=int,
+                        # required=True,
+                        # help="required"
+                        )
     # parser.add_argument('name', type=str, default='')
     # parser.add_argument('id', type=int, default='')
 
@@ -78,8 +100,6 @@ class Employee(Resource):
         for i in res:
             if i['join_date'] != None:
                 i['join_date'] = i['join_date'].strftime("%m/%d/%Y")
-            if i['quit_date'] != None:
-                i['quit_date'] = i['quit_date'].strftime("%m/%d/%Y")
         if res:
             return {"employee": res}, 200
         return {'message': 'type not found'}, 404
@@ -103,8 +123,42 @@ class Employee(Resource):
     def delete(self, id):
         pass
 
-    def put(self, id):
-        pass
+    def put(self):
+        data = Employee.parser.parse_args()
+        get_query = f"SELECT * FROM employee WHERE emp_id = '{data['emp_id']}'"
+        res = execute_read_query_dict(db_conn, get_query)
+        get_store_id_query = f"SELECT store_id FROM store WHERE s_name = '{data['s_name']}'"
+        get_eq_id_query = f"SELECT employee_quit_id FROM employee_quit WHERE eq_category = '{data['eq_category']}'"
+        get_jt_id_query = f"SELECT job_title_id FROM job_title WHERE jt_category = '{data['jt_category']}'"
+        jt_id = execute_read_query_dict(db_conn, get_jt_id_query)[
+            0]['job_title_id']
+        store_id = execute_read_query_dict(
+            db_conn, get_store_id_query)[0]['store_id']
+        eq_id = 'NULL'
+        if data['quit_date'] == None:
+            data['quit_date'] = 'NULL'
+        if data['quit_date'] == 'NULL' and data['eq_category']:
+            data['quit_date'] = date.today().strftime("%y-%m-%d")
+            eq_id = execute_read_query_dict(db_conn, get_eq_id_query)[0][
+                'employee_quit_id']
+            print('test', eq_id, data['quit_date'])
+        if res:
+            update_query = f"""UPDATE employee
+                                SET
+                                e_first_name = '{data['first_name']}',
+                                e_last_name = '{data['last_name']}',
+                                e_phone = '{data['phone']}',
+                                e_email = '{data['email']}',
+                                quit_date = '{data['quit_date']}',
+                                e_comment = '{data['comment']}',
+                                employee_quit_id = {eq_id},
+                                job_title_id = '{jt_id}',
+                                store_id = '{store_id}'
+                                WHERE emp_id = '{data['emp_id']}'"""
+            execute_query(db_conn, update_query)
+            return {"message": "record updated"}, 201
+        else:
+            return {"message": "record not found"}, 404
 
 
 class EmployeeList(Resource):
@@ -124,6 +178,4 @@ class EmployeeList(Resource):
         for i in res:
             if i['join_date'] != None:
                 i['join_date'] = i['join_date'].strftime("%m/%d/%Y")
-            if i['quit_date'] != None:
-                i['quit_date'] = i['quit_date'].strftime("%m/%d/%Y")
         return {"employees": res}
