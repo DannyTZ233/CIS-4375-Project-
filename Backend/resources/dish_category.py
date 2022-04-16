@@ -4,6 +4,17 @@ from db import *
 
 
 class DishCategory(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('dish_category_id',
+                        type=str,
+                        # required=True,
+                        help="required"
+                        )
+    parser.add_argument('dish_category',
+                        type=str,
+                        # required=True,
+                        help="required"
+                        )
 
     def get(self, category):
         query = f"SELECT * FROM dish_category WHERE  lower(dish_category)= '{category.lower()}'"
@@ -34,6 +45,20 @@ class DishCategory(Resource):
         else:
             return {'message': 'category not found'}, 404
         return {'message': 'record deleted'}
+
+    def put(self):
+        data = DishCategory.parser.parse_args()
+        query = f"SELECT * FROM dish_category WHERE dish_category_id = '{data['dish_category_id']}'"
+        res = execute_read_query_dict(db_conn, query)
+        if res:
+            update_query = f"""
+                UPDATE dish_category
+                SET dish_category = '{data['dish_category']}'
+                WHERE dish_category_id = '{data['dish_category_id']}'
+            """
+            execute_query(db_conn, update_query)
+            return {"message": "record updated"}, 201
+        return {"message": "record not found"}, 404
 
 
 class DishCategoryList(Resource):
