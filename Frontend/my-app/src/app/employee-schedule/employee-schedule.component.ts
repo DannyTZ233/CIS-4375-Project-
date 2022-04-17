@@ -17,10 +17,10 @@ export class EmployeeScheduleComponent implements OnInit {
   ngOnInit(): void {
     this.empSchedules.getEmpSchedules()
     .subscribe((data:any)=>{
-      this.empscheds=data.empscheds
+      this.empscheds=data.employees
     })
 
-    
+
   }
 
 }
