@@ -10,11 +10,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let empsched of empscheds">
-        <td>{{empsched.empId}}</td>
-        <td>{{empsched.checkInId}}</td>
-        <td>{{empsched.checkOutId}}</td>
-        <td>{{empsched.log}}</td>
-        <td>{{empsched.leaveId}}</td>
+        <td>{{empsched.e_first_name}} {{empsched.e_last_name}}</td>
+        <td>{{empsched.eci_category}}</td>
+        <td>{{empsched.eco_category}}</td>
+        <td>{{empsched.log_datetime}}</td>
+        <td>{{empsched.el_category}}</td>
     </tr>
     </tbody>
   </table>
