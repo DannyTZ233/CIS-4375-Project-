@@ -14,7 +14,7 @@ export class EmployeesService {
   }
 
   getEmployees(){
-    return this.http.get<Employees>(this.baseUrl+'/employees')
+    return this.http.get<Employees[]>(this.baseUrl+'/employees')
   }
 
   postEmployees(fName:any, lName:any, phone:any, email:any, joinDate:any, quitDate:any, comment:any, empQuitId:any, jobTitleId: any, storeId: any ){

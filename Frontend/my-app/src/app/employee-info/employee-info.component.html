@@ -1,1 +1,26 @@
-<p>employee-info works!</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Date Joined</th>
+        <th scope="col">Quit Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{employee.emp_id}}</td>
+        <td>{{employee.e_first_name}}</td>
+        <td>{{employee.e_last_name}}</td>
+        <td>{{employee.e_phone}}</td>
+        <td>{{employee.e_email}}</td>
+        <td>{{employee.join_date}}</td>
+        <td>{{employee.quit_date}}</td>
+
+    </tr>
+    </tbody>
+  </table>
+
