@@ -3,6 +3,7 @@ h1 {
     text-align: center;
 }
 
+
 button{
     margin: auto;
     margin-bottom: 75px;
@@ -17,3 +18,9 @@ button{
     display: grid;
     
   }
+
+div{
+    text-align: center;
+    margin-bottom: 50px
+    }
+

@@ -1,11 +1,57 @@
 <html>
-    <link rel="stylesheet" href="analytics.component.css">
+    
     <br><h1 id="tittle">Analytics</h1> <br> <br> <br>
-    <button (click)="ShowServiceRatings()" type="button">Service Ratings</button> 
-    <div *ngIf="ShowServiceRatings()"> 
-        <!-- Show Something -->
-    </div>
-    <button type="button">Enviroment Ratings</button> 
-    <button type="button">Food Quality Ratings</button> 
-    <button type="button">Age Group</button> <br>
-</html>
+    
+    <!-- Service Ratings Button to show analytics -->
+    <button (click)="clickServiceR()" type="button">Service Ratings</button> 
+        <div *ngIf="ServiceR"  > 
+            
+                <canvas
+                baseChart
+                [data]="servicedata"
+                [type]="'bar'"
+                [options]="chartOptions"
+              >
+              </canvas>
+            
+        </div>
+
+
+    <!-- Enviroment Ratings button to show analytics -->
+    <button (click)="clickEnviromentR()" type="button">Enviroment Ratings</button> 
+        <div *ngIf="EnviromentR">
+            <canvas
+                baseChart
+                [data]="envdata"
+                [type]="'bar'"
+                [options]="Options"
+              >
+              </canvas>
+        </div>
+
+    
+
+    <!-- Food quality Ratings button to show analytics  -->
+    <button (click)="clickFoodR()" type="button">Food Quality Ratings</button>
+        <div *ngIf="FoodR">
+            <canvas
+            baseChart
+            [data]="dishdata"
+            [type]="'bar'"
+            [options]="baropt"
+          >
+          </canvas>
+        </div> 
+
+    <!-- Age group button to show analytics -->
+    <button (click)="clickAgeG()" type="button">Age Group</button>
+        <div *ngIf="AgeG">
+            <canvas
+            baseChart
+            [data]="agedata"
+            [type]="'pie'"
+            [options]="pieopt"
+          >
+          </canvas>
+        </div>
+</html> 
