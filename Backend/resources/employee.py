@@ -164,7 +164,7 @@ class Employee(Resource):
 class EmployeeList(Resource):
     def get(self):
         query = """SELECT 
-            e.emp_id, e.e_first_name, e.e_last_name, e.e_phone, e.join_date, e.quit_date, e.e_comment,
+            e.emp_id, e.e_first_name, e.e_last_name, e.e_phone, e.e_email, e.join_date, e.quit_date, e.e_comment,
             s.s_name, jt.jt_category, eq.eq_category
             FROM 
             employee as e
@@ -178,4 +178,6 @@ class EmployeeList(Resource):
         for i in res:
             if i['join_date'] != None:
                 i['join_date'] = i['join_date'].strftime("%m/%d/%Y")
+            if i['quit_date'] != None:
+                i['quit_date'] = i['quit_date'].strftime("%m/%d/%Y")
         return {"employees": res}
