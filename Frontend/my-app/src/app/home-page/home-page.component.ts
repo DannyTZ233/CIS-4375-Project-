@@ -12,4 +12,5 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  currenttime = Date();
 }

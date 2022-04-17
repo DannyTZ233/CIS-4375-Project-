@@ -1,1 +1,20 @@
-<p>employee-schedule works!</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Employee</th>
+        <th scope="col">Check-in</th>
+        <th scope="col">Check-out</th>
+        <th scope="col">Date</th>
+        <th scope="col">Leave</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empsched of empscheds">
+        <td>{{empsched.empId}}</td>
+        <td>{{empsched.checkInId}}</td>
+        <td>{{empsched.checkOutId}}</td>
+        <td>{{empsched.log}}</td>
+        <td>{{empsched.leaveId}}</td>
+    </tr>
+    </tbody>
+  </table>
