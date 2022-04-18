@@ -15,7 +15,7 @@ export class RatingsService {
   }
 
   getRatings(){
-    return this.http.get<Ratings>(this.baseUrl+'/ratings')
+    return this.http.get<Ratings[]>(this.baseUrl+'/ratings')
   }
 
   postRatings(){}

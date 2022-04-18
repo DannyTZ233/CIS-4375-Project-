@@ -1,7 +1,7 @@
 export class EmpReplies{
-    empReplyId?: number;
-    empId?: number;
-    customerId?: number;
-    date?: Date;
-    response?: string;
+    emp_reply_id?: number;
+    emp_id?: number;
+    customer_id?: number;
+    date_time?: Date;
+    responses?: string;
 }

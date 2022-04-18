@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { CustomersService } from '../API/customers/customers.service';
+import { CustomersService } from 'src/app/API/customers/customers.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -39,8 +39,14 @@ export class AddCustomerComponent implements OnInit {
       this.angForm.value.zip)
       .pipe(first())
       .subscribe( data => {
-        this.route.navigate(['/customer-info'])
+        this.route.navigate(['/give-customer-token'], { state: { phone:this.angForm.value.phone } })
       });
   }
+
+  goBack(){
+    this.route.navigate(['/check-customer'])
+  }
+
+  ngOnDestroy(){}
 
 }

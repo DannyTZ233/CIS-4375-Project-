@@ -16,6 +16,20 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgChartsModule } from 'ng2-charts';
+import { ListShortSurveysComponent } from './list-short-surveys/list-short-surveys.component';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { ServiceReviewComponent } from './service-review/service-review.component';
+import { EmpResponseComponent } from './EmployeeResponse/emp-response/emp-response.component';
+import { CreateEmpResponseComponent } from './EmployeeResponse/create-emp-response/create-emp-response.component';
+import { CheckCustomerComponent } from './CustomerLogin/check-customer/check-customer.component';
+import { GiveCustomerTokenComponent } from './CustomerLogin/give-customer-token/give-customer-token.component';
+import { CustomerRewardComponent } from './customer-reward/customer-reward.component';
+import { ExtensiveCheckCustomerComponent } from './ExtensiveSurvey/extensive-check-customer/extensive-check-customer.component';
+import { ExtensiveAddCustomerComponent } from './ExtensiveSurvey/extensive-add-customer/extensive-add-customer.component';
+import { ExtensiveGiveCustomerTokenComponent } from './ExtensiveSurvey/extensive-give-customer-token/extensive-give-customer-token.component';
+import { ExtenGiveCustomerTokenComponent } from './ExtensiveSurvey/exten-give-customer-token/exten-give-customer-token.component';
+import { SurveyInfoComponent } from './displaySurveys/survey-info/survey-info.component';
+import { EmployeeCommentComponent } from './displaySurveys/employee-comment/employee-comment.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +44,20 @@ import { NgChartsModule } from 'ng2-charts';
     EmployeeTimesheetComponent,
     AnalyticsComponent,
     AddCustomerComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    ListShortSurveysComponent,
+    ServiceReviewComponent,
+    EmpResponseComponent,
+    CreateEmpResponseComponent,
+    CheckCustomerComponent,
+    GiveCustomerTokenComponent,
+    CustomerRewardComponent,
+    ExtensiveCheckCustomerComponent,
+    ExtensiveAddCustomerComponent,
+    ExtensiveGiveCustomerTokenComponent,
+    ExtenGiveCustomerTokenComponent,
+    SurveyInfoComponent,
+    EmployeeCommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +65,8 @@ import { NgChartsModule } from 'ng2-charts';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgChartsModule
+    NgChartsModule,
+    InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

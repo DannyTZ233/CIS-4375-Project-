@@ -48,4 +48,4 @@ class RatingList(Resource):
     def get(self):
         query = 'SELECT * FROM rating'
         res = execute_read_query_dict(db_conn, query)
-        return {'dish categories': res}, 200
+        return {'ratings': res}, 200

@@ -1,4 +1,4 @@
 export class Ratings{
-    id?: number;
-    category?: string;
+    rating_id?: number;
+    r_category?: string;
 }

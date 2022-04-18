@@ -1,5 +1,4 @@
 export class CustPoints{
-    custPointId?: number;
-    custId?: number;
-    rewardId?: number;
+    customer_id?: number;
+    reward_id?: number;
 }

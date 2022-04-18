@@ -1,4 +1,4 @@
 export class JobTitles{
-    id?: number;
-    category?: string;
+    job_title_id?: number;
+    jt_category?: string;
 }

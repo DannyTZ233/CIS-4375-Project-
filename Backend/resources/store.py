@@ -1,8 +1,6 @@
 
 from flask_restful import Resource, reqparse
 from db import *
-db_conn = create_connection(
-    '127.0.0.1', 'root', 'Alife355005', 'CIS4375db')
 
 
 class Store(Resource):

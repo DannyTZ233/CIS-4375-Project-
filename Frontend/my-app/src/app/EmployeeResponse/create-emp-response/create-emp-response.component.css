@@ -1,0 +1,17 @@
+.form-item {
+    margin: auto;
+    text-align: right;
+  }
+
+.form-whole {
+    margin: auto;
+    padding: 2vw;
+}
+
+.required-tag {
+    color: red;
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442; /* red */
+  }

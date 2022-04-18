@@ -57,6 +57,14 @@ class Customer(Resource):
             return {"customer": res}, 200
         return {'message': 'customer not found'}, 404
 
+    def get(self, phone):
+        query = f"SELECT * FROM customer_info WHERE phone = '{str(phone)}'"
+        res = execute_read_query_dict(db_conn, query)
+        if res:
+            return {"phonecustomer": res}, 200
+        return {'message': 'customer not found'}, 404
+
+
     def post(self):
         data = Customer.parser.parse_args()
         phone = (data['phone'])

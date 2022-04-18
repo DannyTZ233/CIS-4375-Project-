@@ -28,42 +28,42 @@ export class AddEmployeeComponent implements OnInit {
   ) { 
 
     this.angForm = this.fb.group({
-      fName: ['', Validators.required],
-      lName: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['', Validators.required],
-      zip: ['', Validators.required],
-      comment: [''],
-      jobTitle: ['', Validators.required],
+      e_first_name: ['', Validators.required],
+      e_last_name: ['', Validators.required],
+      e_phone: ['', Validators.required],
+      e_email: ['', Validators.required],
+      join_date: ['', Validators.required],
+      e_comment: '',
+      //jobTitle: ['', Validators.required],
       store: ['', Validators.required],
     })
 
    }
 
   ngOnInit(): void {
-    this.jobTitlesService.getJobTitles().subscribe((data:any)=>{
-      this.JobsList=data;
-    })
+    // this.jobTitlesService.getJobTitles().subscribe((data:any)=>{
+    //   this.JobsList=data['job titles'];
+    // })
     this.storesService.getStores().subscribe((data:any)=>{
-      this.StoresList=data;
+      this.StoresList=data.stores;
     })
   }
 
   addEmployee(forms: any){
     this.employeesService.postEmployees(
-      this.angForm.value.fName, 
-      this.angForm.value.lName, 
-      this.angForm.value.phone, 
-      this.angForm.value.email, 
-      this.angForm.value.joinDate, 
-      null, 
-      this.angForm.value.comment, 
-      null, 
-      this.angForm.value.jobTitle, 
+      this.angForm.value.e_first_name, 
+      this.angForm.value.e_last_name, 
+      this.angForm.value.e_phone, 
+      this.angForm.value.e_email, 
+      this.angForm.value.join_date, 
+      this.angForm.value.join_date,
+      this.angForm.value.e_comment, 
+      1, 
+      3, 
       this.angForm.value.store)
       .pipe(first())
       .subscribe( data => {
-        this.route.navigate(['/employees'])
+        this.route.navigate(['/employee-info'])
       });
   }
 

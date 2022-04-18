@@ -1,1 +1,24 @@
-<p>employee-timesheet works!</p>
+
+<div class="d-flex justify-content-between">
+    <h1>Employee Timesheet</h1>
+  <div class="container-fluid">
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Employee Name</th>
+        <th scope="col">Clock-In</th>
+        <th scope="col">Clock-Out</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{emp.emp_id}}</td>
+        <td>{{emp.e_first_name}}  {{emp.e_last_name}}</td>
+        <td><button type="button" (click)="clockIn(false)" class="btn btn-primary" [disabled]="clockedOut == false">Clock-In</button></td>
+        <td><button type="button" (click)="clockOut(true)" class="btn btn-danger" [disabled]="clockedIn == false">Clock-Out</button></td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+

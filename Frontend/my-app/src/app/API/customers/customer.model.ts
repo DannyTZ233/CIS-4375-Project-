@@ -5,5 +5,5 @@ export class Customers{
     phone?: string;
     email?: string;
     zip?: string;
-    loginKey?: number;
+    customer_log_in_key?: number;
 }

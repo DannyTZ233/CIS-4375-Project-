@@ -1,22 +1,31 @@
-<table class="table">
+<div class="d-flex justify-content-between">
+    <h1>Customer Info</h1>
+    <button class="btn btn-primary" style="margin: 6px;" (click)="goToAdd()">Add Customer</button>
+  </div>
+  <div class="container-fluid">
+    <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
         <th scope="col">First</th>
         <th scope="col">Last</th>
         <th scope="col">Phone</th>
         <th scope="col">Email</th>
         <th scope="col">Zip</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let customer of customers">
-        <td>{{customer.customer_id}}</td>
         <td>{{customer.first_name}}</td>
         <td>{{customer.last_name}}</td>
         <td>{{customer.phone}}</td>
         <td>{{customer.email}}</td>
         <td>{{customer.zip}}</td>
+        <td>
+          <button class="btn btn-secondary" style="margin-right: 2px;">Edit</button>
+        </td>
     </tr>
     </tbody>
   </table>
+  </div>
+

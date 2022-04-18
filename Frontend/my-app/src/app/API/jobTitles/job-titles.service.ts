@@ -14,7 +14,7 @@ export class JobTitlesService {
   }
 
   getJobTitles(){
-    return this.http.get<JobTitles>(this.baseUrl+'/job-titles')
+    return this.http.get<JobTitles[]>(this.baseUrl+'/job-titles')
   }
 
   postJobTitles(){}

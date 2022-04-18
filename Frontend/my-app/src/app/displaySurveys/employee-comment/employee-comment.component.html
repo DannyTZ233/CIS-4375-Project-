@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="cardbody">
+        <form [formGroup]="angForm" (ngSubmit)="addComment(angForm)" autocomplete="off">
+
+            <div class="row">
+                <div class="col-md-6">Enter your Employee ID:</div>
+                <div class="col-md-6"><input type="text" class="form-control" name="emp_id" formControlName="emp_id"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">Reply to Survey</div>
+                <div class="col-md-6"><input type="text" class="form-control" name="responses" formControlName="responses"></div>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-between">
+                    <input type="submit" class="btn btn-warning" name="submit">
+                    <button class="btn btn-secondary" (click)="goBack()">Back</button>
+                </div>
+                </div>
+            </div>
+    
+        </form>
+    </div>
+</div>

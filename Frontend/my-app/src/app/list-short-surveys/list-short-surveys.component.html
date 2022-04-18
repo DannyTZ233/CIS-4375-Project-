@@ -1,0 +1,75 @@
+<!-- <div *ngFor="let reply of replies">
+    <div *ngIf="survey.first_name == reply.c_first && survey.last_name == reply.c_last"; then replyBlock; else noReply>
+        <ng-template #replyBlock class="card">
+            <span class="card-body">{{reply.responses}}</span>
+        </ng-template>
+        <ng-template #noReply>
+            <button (click)="showReplyBox()" class="btn btn-info">Reply</button>
+            <div *ngIf="showReplyBox()" class="card">
+                <form [formGroup]="angForm" (ngSubmit)="addReply(angForm)" autocomplete="off" class="card-body">
+                    <div class="row">
+                        <label>Customer Number</label>
+                        <input type="text" readonly class="form-control-plaintext" name="customer_id" formControlName="customer_id" [value]="survey.customer_id">
+                    </div>
+                    <div class="row">
+                        <textarea name="responses" class="form-control" formControlName="responses"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12"><input type="submit" class="btn btn-warning" name="submit"></div>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+    </div>
+</div> -->
+
+<!-- <div class="container-fluid" 
+infiniteScroll
+[infiniteScrollDistance]="2"
+[infiniteScrollThrottle]="50"
+(scrolled)="onScroll()">
+    <div class="card" style="align-self: center;">
+        <div *ngFor="let survey of surveys">
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div> {{survey.first_name}} felt {{survey.r_category}} about their experience.</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                    <h5>Comment</h5>
+                    <h6>{{survey.comment}}</h6>
+                </div>
+                    </div>
+                    add replies here
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="container-fluid" 
+infiniteScroll
+[infiniteScrollDistance]="2"
+[infiniteScrollThrottle]="50"
+(scrolled)="onScroll()">
+    <div class="card" style="align-self: center;">
+        <div *ngFor="let reply of replies">
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div> {{reply.e_first_name}} {{reply.e_last_name}} Left a reply.</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                    <h5>Reply</h5>
+                    <h6>{{reply.}}</h6>
+                </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div> -->

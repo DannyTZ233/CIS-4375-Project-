@@ -39,7 +39,7 @@ class EmployeeReply(Resource):
             if i['date_time'] != None:
                 i['date_time'] = i['date_time'].strftime("%m/%d/%Y")
         if res:
-            return {"employee reply": res}, 200
+            return {"reply": res}, 200
         return {'message': 'record not found'}, 404
 
     def post(self):
@@ -72,4 +72,4 @@ class EmployeeReplyList(Resource):
         for i in res:
             if i['date_time'] != None:
                 i['date_time'] = i['date_time'].strftime("%m/%d/%Y")
-        return {"service review": res}
+        return {"replies": res}
