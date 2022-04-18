@@ -14,7 +14,7 @@ export class StoresService {
   }
 
   getStores(){
-    return this.http.get<Stores>(this.baseUrl+'/stores')
+    return this.http.get<Stores[]>(this.baseUrl+'/stores')
   }
 
   postStores(){}

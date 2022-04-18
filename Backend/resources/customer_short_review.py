@@ -76,4 +76,4 @@ class CustomerShortReviewList(Resource):
         for i in res:
             if i['date_time'] != None:
                 i['date_time'] = i['date_time'].strftime("%m/%d/%Y")
-        return {"service review": res}
+        return {"surveys": res}

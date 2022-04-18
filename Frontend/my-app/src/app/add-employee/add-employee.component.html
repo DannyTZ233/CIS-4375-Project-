@@ -6,46 +6,46 @@
 
         <div class="row">
             <div class="col-md-6">First Name</div>
-            <div class="col-md-6"><input type="text" class="form-control" name="fName" formControlName="fName"></div>
+            <div class="col-md-6"><input type="text" class="form-control" name="e_first_name" formControlName="e_first_name"></div>
         </div>
         
         <div class="row">
             <div class="col-md-6">Last Name</div>
-            <div class="col-md-6"><input type="text" class="form-control" name="lName" formControlName="lName"></div>
+            <div class="col-md-6"><input type="text" class="form-control" name="e_last_name" formControlName="e_last_name"></div>
         </div>
 
         <div class="row">
             <div class="col-md-6">Phone Number</div>
-            <div class="col-md-6"><input type="tel" class="form-control" name="phone" formControlName="phone"></div>
+            <div class="col-md-6"><input type="tel" class="form-control" name="e_phone" formControlName="e_phone"></div>
         </div>
 
         <div class="row">
             <div class="col-md-6">Email Address</div>
-            <div class="col-md-6"><input type="email" class="form-control" name="email" formControlName="email"></div>
+            <div class="col-md-6"><input type="email" class="form-control" name="e_email" formControlName="e_email"></div>
         </div>
 
         <div class="row">
             <div class="col-md-6">Join Date</div>
-            <div class="col-md-6"><input type="date" class="form-control" name="zip" formControlName="zip"></div>
+            <div class="col-md-6"><input type="date" class="form-control" name="join_date" formControlName="join_date"></div>
         </div>
 
         <div class="row">
             <div class="col-md-6">Comment</div>
-            <div class="col-md-6"><input type="text" class="form-control" name="comment" formControlName="comment"></div>
+            <div class="col-md-6"><input type="text" class="form-control" name="e_comment" formControlName="e_comment"></div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-6">Job Title</div>
             <select class="form-control"
             (change)="changeJob($event)"
             name="jobTitle"
             formControlName="jobTitle">
                 <option value="">--Choose Job Title--</option>
-                <option *ngFor="let title of Title" [value]="title.id">
-                    {{ title.category }}
+                <option *ngFor="let title of JobsList" [value]="title.job_title_id">
+                    {{ title.jt_category }}
                 </option>
             </select>
-        </div>
+        </div> -->
 
         <div class="row">
             <div class="col-md-6">Store</div>
@@ -54,8 +54,8 @@
             name="store"
             formControlName="store">
                 <option value="">--Choose Store--</option>
-                <option *ngFor="let store of Store" [value]="store.id">
-                    {{ store.name }}
+                <option *ngFor="let store of StoresList" [value]="store.store_id">
+                    {{ store.s_name }}
                 </option>
             </select>
         </div>

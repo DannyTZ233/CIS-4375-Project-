@@ -1,5 +1,5 @@
 export class Stores {
-  id?: number;
-  name?: string;
+  store_id?: number;
+  s_name?: string;
   address?: string;
   }

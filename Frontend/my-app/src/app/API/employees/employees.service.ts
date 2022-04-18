@@ -14,12 +14,12 @@ export class EmployeesService {
   }
 
   getEmployees(){
-    return this.http.get<Employees>(this.baseUrl+'/employees')
+    return this.http.get<Employees[]>(this.baseUrl+'/employees')
   }
 
-  postEmployees(fName:any, lName:any, phone:any, email:any, joinDate:any, quitDate:any, comment:any, empQuitId:any, jobTitleId: any, storeId: any ){
+  postEmployees(e_first_name:any, e_last_name:any, e_phone:any, e_email:any, join_date:any, quit_date:any, e_comment:any, employee_quit_id:any, job_title_id: any, store_id: any ){
     return this.http.post<any>(this.baseUrl+'/employee',
-    {fName, lName, phone, email, joinDate, quitDate, comment, empQuitId, jobTitleId, storeId })
+    {e_first_name, e_last_name, e_phone, e_email, join_date, quit_date, e_comment, employee_quit_id, job_title_id, store_id })
     .pipe(map(Employees => {
       return Employees;
     }))

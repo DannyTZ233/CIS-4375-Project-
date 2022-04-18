@@ -78,7 +78,8 @@ api.add_resource(EmployeeScheduleList, '/employee-schedules')
 # customer
 customer_routes = [
     '/customer',
-    '/customer/<int:id>'
+    '/customer/<int:id>',
+    '/phonecustomer/<phone>',
 ]
 api.add_resource(Customer, *customer_routes)
 api.add_resource(CustomerList, '/customers')

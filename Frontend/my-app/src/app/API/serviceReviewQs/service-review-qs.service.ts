@@ -14,7 +14,7 @@ export class ServiceReviewQsService {
   }
 
   getServiceRevQs(){
-    return this.http.get<ServiceReviewQs>(this.baseUrl+'/ser-review-questions')
+    return this.http.get<ServiceReviewQs[]>(this.baseUrl+'/ser-review-questions')
   }
 
   postServiceRevQs(){}

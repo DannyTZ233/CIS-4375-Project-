@@ -1,8 +1,8 @@
 export class CustShortReviews{
-    revId?: number;
-    shortRevId?: number;
-    date?: Date;
-    ratingId?: number;
-    customerId?: number;
+    review_id?: number;
+    short_review_id?: number;
+    date_time?: Date;
+    rating_id?: number;
+    customer_id?: number;
     comment?: string;
 }

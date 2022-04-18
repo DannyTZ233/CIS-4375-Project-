@@ -1,8 +1,6 @@
 export class ServiceReviews {
-    serviceRevId?: number;
-    serviceRevQsId?: number;
-    ratingId?: number;
-    empId?: number;
-    custId?: number;
-    date?: Date;
+  service_review_question_id?: number;
+  rating_id?: number;
+  emp_id?: number;
+  customer_id?: number;
   }

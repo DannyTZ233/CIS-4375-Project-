@@ -1,0 +1,22 @@
+<div class="d-flex" style="align-self: center;">
+    <h1>Surveys</h1>
+  </div>
+  <div class="container-fluid">
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Response</th>
+        <th scope="col">Comment</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let survey of surveys">
+        <td>{{survey.first_name}} {{survey.last_name}}</td>
+        <td>{{survey.responses}}</td>
+        <td>{{survey.comment}}</td>
+        <td><app-employee-comment></app-employee-comment></td>
+    </tbody>
+  </table>
+  </div>

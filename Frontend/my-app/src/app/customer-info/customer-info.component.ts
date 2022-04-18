@@ -21,4 +21,23 @@ export class CustomerInfoComponent implements OnInit {
     })
   }
 
+  deleteCustomer(customer_id: any): void {
+
+    this.customersService.deleteCustomer(customer_id)
+    .subscribe(data => {
+      
+      setTimeout(() => {
+        this.customersService.getCustomers()
+        .subscribe((data: any) => {
+          this.customers = data.Customers;
+        });
+      }, 1000);
+    });
+
+  }
+
+  goToAdd(){
+    this.route.navigateByUrl('/add-customer');
+  }
+
 }

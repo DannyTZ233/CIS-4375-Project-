@@ -1,4 +1,4 @@
 export class ServiceReviewQs{
-    id?: number;
-    question?: string;
+    service_review_question_id?: number;
+    service_question?: string;
 }
