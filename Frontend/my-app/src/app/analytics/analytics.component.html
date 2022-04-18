@@ -44,14 +44,27 @@
         </div> 
 
     <!-- Age group button to show analytics -->
-    <button (click)="clickAgeG()" type="button">Age Group</button>
-        <div *ngIf="AgeG">
+    <button (click)="clickZipcodeE()" type="button">Zipcode Report</button>
+        <div *ngIf="zipcode">
             <canvas
             baseChart
-            [data]="agedata"
-            [type]="'pie'"
-            [options]="pieopt"
+            [data]="zipcodedata"
+            [type]="'bar'"
+            [options]="zipopt"
           >
           </canvas>
         </div>
+
+    <!-- Short survey review  -->
+    <button (click)="clickShortS()" type="button">Short Survey Report</button>
+    <div *ngIf="shortsurvey">
+        <canvas
+        baseChart
+        [data]="shortReview"
+        [type]="'bar'"
+        [options]="shortRopt"
+      >
+      </canvas>
+    </div>
+
 </html> 

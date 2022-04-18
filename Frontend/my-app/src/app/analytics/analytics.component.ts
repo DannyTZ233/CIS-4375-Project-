@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartData, ChartOptions } from 'chart.js';
+import { BubbleController, ChartData, ChartOptions } from 'chart.js';
+import { Router } from '@angular/router';
+import { CountZipcodeService } from '../API/zipcodeReport/zipcode-count.service';
 
 @Component({
   selector: 'app-analytics',
@@ -8,10 +10,17 @@ import { ChartData, ChartOptions } from 'chart.js';
 })
 export class AnalyticsComponent implements OnInit {
 
-  constructor() { }
+  Zipcodes : any;  
+  constructor(private route: Router,
+    private zipcodeCount: CountZipcodeService) { }
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.zipcodeCount.getZipCount()
+    .subscribe((data:any)=>{
+      this.Zipcodes=data.Zipcodes;
+    })
+  }
   
 
   // when service rating button clicked- will display data underneath
@@ -93,13 +102,14 @@ export class AnalyticsComponent implements OnInit {
 };
   baropt: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       title: {
         display: true,
         text: 'Food Quality Reviews',
       },
     },
-    maintainAspectRatio: false,
+    
     
   };
 
@@ -107,33 +117,63 @@ export class AnalyticsComponent implements OnInit {
 
 /* -----------------------Age Groups--------------------------------------------------- */
   // age group button
-  AgeG=false;
-  clickAgeG(){
-    this.AgeG=!this.AgeG;
+  zipcode=false;
+  clickZipcodeE(){
+    this.zipcode=!this.zipcode;
   }
 
-  agedata: ChartData<'line'> = {
-    labels: ['12-10', '21-30', '31-40', '41-64', '65 or above'],
+  // zipcode bar graph
+  zipcodedata: ChartData<'line'> = {
+    labels: ['69865', '03597', '81179', '50395','86412','32801','74544','45275','67737','28803'],
   datasets: [
-    { label: 'Food Quality', data: [10, 150, 85, 75, 35], tension: 0.5 },
-
+    { label: 'Total', data: [5, 2, 5, 1, 1,3,3,4,1,5], tension: 0.10 },
   ],
 
+  
 };
-  pieopt: ChartOptions = {
+  zipopt: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       title: {
         display: true,
-        text: 'By Age Group',
+        text: 'Zipcode Report',
       },
-    },
-    maintainAspectRatio: false,
-    
+      
+      legend: {
+        position: 'right'
+      }
+    }
   };
 
+// -------------------------- Short survey reviews ------------
 
+// button for short survey
+shortsurvey=false;
+clickShortS(){
+  this.shortsurvey=!this.shortsurvey;
+}
 
+// short survey review zipcode
+shortReview: ChartData<'line'> = {
+  labels: ['Strongly Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Strongly Dissatisfied'],
+datasets: [
+  { label: 'Total Count', data: [10, 5, 25, 5, 0  ], tension: 0.5 },
+
+],
+
+};
+shortRopt: ChartOptions = {
+  responsive: true,
+  plugins: {
+    title: {
+      display: true,
+      text: 'Short Survey reviews',
+    },
+  },
+  maintainAspectRatio: false,
+  
+};
  
 }
 
