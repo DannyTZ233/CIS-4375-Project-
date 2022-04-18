@@ -9,16 +9,32 @@ import { EmpSchedulesService } from '../API/empSchedules/emp-schedules.service';
 })
 export class EmployeeScheduleComponent implements OnInit {
 
-  empscheds:any;
+  empscheds: any;
+
+  getScheds(scheddate: any) {
+
+    //console.log(scheddate)
+    //console.log(typeof scheddate)
+
+    //date formatting and type adjustment
+    scheddate = Date.parse(scheddate)
+
+    //API call, just needs to pass date as argument
+    this.empSchedules.getEmpSchedules(/*scheddate*/)
+      .subscribe((data: any) => {
+        this.empscheds = data.employees
+      })
+  };
 
   constructor(private route: Router,
     private empSchedules: EmpSchedulesService) { }
 
   ngOnInit(): void {
-    this.empSchedules.getEmpSchedules()
-    .subscribe((data:any)=>{
-      this.empscheds=data.employees
-    })
+
+    /*this.empSchedules.getEmpSchedules()
+      .subscribe((data: any) => {
+        this.empscheds = data.employees
+      })*/
 
 
   }

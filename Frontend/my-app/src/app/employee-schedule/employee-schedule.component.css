@@ -66,3 +66,11 @@ textarea {
   display: flex;
   display: grid;
 }
+
+input:invalid + span::after {
+  content: '✖';
+}
+
+input:valid+span::after {
+  content: '✓';
+}

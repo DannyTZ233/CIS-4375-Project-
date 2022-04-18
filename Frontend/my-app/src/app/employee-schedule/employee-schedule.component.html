@@ -1,20 +1,33 @@
+<br>
+<div style="text-align:center">
+    <label for="sched">Choose date:</label>
+    
+    <input #scheddate type="date" id="sched" name="scheddate" min="2022-03-01" max="2050-03-01" required>
+    <span class="validity"></span>
+    <button (click)="getScheds(scheddate.value)">Submit</button>
+    
+</div>
+<br>
+<br>
+<br>
+
 <table class="table">
     <thead>
-      <tr>
-        <th scope="col">Employee</th>
-        <th scope="col">Check-in</th>
-        <th scope="col">Check-out</th>
-        <th scope="col">Date</th>
-        <th scope="col">Leave</th>
-      </tr>
+        <tr>
+            <th scope="col">Employee</th>
+            <th scope="col">Check-in</th>
+            <th scope="col">Check-out</th>
+            <th scope="col">Date</th>
+            <th scope="col">Leave</th>
+        </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let empsched of empscheds">
-        <td>{{empsched.e_first_name}} {{empsched.e_last_name}}</td>
-        <td>{{empsched.eci_category}}</td>
-        <td>{{empsched.eco_category}}</td>
-        <td>{{empsched.log_datetime}}</td>
-        <td>{{empsched.el_category}}</td>
-    </tr>
+        <tr *ngFor="let empsched of empscheds">
+            <td>{{empsched.e_first_name}} {{empsched.e_last_name}}</td>
+            <td>{{empsched.eci_category}}</td>
+            <td>{{empsched.eco_category}}</td>
+            <td>{{empsched.log_datetime}}</td>
+            <td>{{empsched.el_category}}</td>
+        </tr>
     </tbody>
-  </table>
+</table>
