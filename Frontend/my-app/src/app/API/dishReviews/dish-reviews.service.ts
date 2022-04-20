@@ -17,7 +17,13 @@ export class DishReviewsService {
     return this.http.get<DishReviews>(this.baseUrl+'/dish-reviews')
   }
 
-  postDishReviews(){}
+  postDishRevs(question_id:any, rating_id:any, dish_id:any, customer_id:any){
+    return this.http.post<any>(this.baseUrl+'/dish-reviews',
+    {question_id, rating_id,dish_id, customer_id})
+    .pipe(map(DishReviews => {
+      return DishReviews;
+    }))
+  }
   updateDishReviews(){}
   deleteDishReviews(){}
 }

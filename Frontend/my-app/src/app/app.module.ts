@@ -10,12 +10,10 @@ import { CustomerInfoComponent } from './customer-info/customer-info.component';
 import { EmployeeScheduleComponent } from './employee-schedule/employee-schedule.component';
 import { EmployeeInfoComponent } from './employee-info/employee-info.component';
 import { EmployeeTimesheetComponent } from './employee-timesheet/employee-timesheet.component';
-import { AnalyticsComponent } from './analytics/analytics.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NgChartsModule } from 'ng2-charts';
 import { ListShortSurveysComponent } from './list-short-surveys/list-short-surveys.component';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ServiceReviewComponent } from './service-review/service-review.component';
@@ -29,6 +27,13 @@ import { ExtensiveAddCustomerComponent } from './ExtensiveSurvey/extensive-add-c
 import { ExtensiveGiveCustomerTokenComponent } from './ExtensiveSurvey/extensive-give-customer-token/extensive-give-customer-token.component';
 import { ExtenGiveCustomerTokenComponent } from './ExtensiveSurvey/exten-give-customer-token/exten-give-customer-token.component';
 import { SurveyInfoComponent } from './displaySurveys/survey-info/survey-info.component';
+import { EnvironmentQ1Component } from './BigSurvey/environment-q1/environment-q1.component';
+import { EnvironmentQ2Component } from './BigSurvey/environment-q2/environment-q2.component';
+import { DishQ1Component } from './BigSurvey/dish-q1/dish-q1.component';
+import { ServiceQ1Component } from './BigSurvey/service-q1/service-q1.component';
+import { ServiceQ4Component } from './BigSurvey/service-q4/service-q4.component';
+import { ServiceQ2Component } from './BigSurvey/service-q2/service-q2.component';
+import { ServiceQ3Component } from './BigSurvey/service-q3/service-q3.component';
 import { EmployeeCommentComponent } from './displaySurveys/employee-comment/employee-comment.component';
 
 @NgModule({
@@ -42,7 +47,6 @@ import { EmployeeCommentComponent } from './displaySurveys/employee-comment/empl
     EmployeeScheduleComponent,
     EmployeeInfoComponent,
     EmployeeTimesheetComponent,
-    AnalyticsComponent,
     AddCustomerComponent,
     AddEmployeeComponent,
     ListShortSurveysComponent,
@@ -57,16 +61,22 @@ import { EmployeeCommentComponent } from './displaySurveys/employee-comment/empl
     ExtensiveGiveCustomerTokenComponent,
     ExtenGiveCustomerTokenComponent,
     SurveyInfoComponent,
-    EmployeeCommentComponent,
+    EnvironmentQ1Component,
+    EnvironmentQ2Component,
+    DishQ1Component,
+    ServiceQ1Component,
+    ServiceQ2Component,
+    ServiceQ3Component,
+    ServiceQ4Component,
+    EmployeeCommentComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    NgChartsModule,
-    InfiniteScrollModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

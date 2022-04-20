@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {API_URL} from '../../env';
 import { map } from 'rxjs';
 import { Dishes } from './dishes.model';
+import { DishReviews } from '../dishReviews/dishReviews.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class DishesService {
   getDishes(){
     return this.http.get<Dishes>(this.baseUrl+'/dishes')
   }
-
+  
   postDishes(){}
   updateDishes(){}
   deleteDishes(){}

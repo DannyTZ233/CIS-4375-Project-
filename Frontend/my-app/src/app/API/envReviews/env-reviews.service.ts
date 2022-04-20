@@ -17,7 +17,21 @@ export class EnvReviewsService {
     return this.http.get<EnvReviews>(this.baseUrl+'/env-reviews')
   }
 
-  postEnvReviews(){}
+  postServiceRevs(service_review_question_id:any, rating_id:any, emp_id:any, customer_id:any){
+    return this.http.post<any>(this.baseUrl+'/service-reviews',
+    {service_review_question_id, customer_id,rating_id, emp_id})
+    .pipe(map(ServiceReviews => {
+      return ServiceReviews;
+    }))
+  }
+
+  postEnvReviews(question_id: any, rating_id: any, customer_id: any){
+    return this.http.post<any>(this.baseUrl+'/env-review',
+    {question_id, rating_id,customer_id})
+    .pipe(map(EnvReviews => {
+      return EnvReviews;
+    }))
+  }
   updateEnvReviews(){}
   deleteEnvReviews(){}
 }

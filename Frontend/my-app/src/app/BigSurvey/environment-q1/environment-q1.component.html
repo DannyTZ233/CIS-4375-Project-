@@ -1,0 +1,34 @@
+
+    
+<div class="card">
+    <div class="cardbody">
+        <!-- <form [formGroup]="angForm" (ngSubmit)="submitRatings(angForm)" autocomplete="off"> -->
+           <div>Were you satifised with the cleanliness of the resturant</div>
+           
+           <label for="cars">Rating</label>
+
+<select name="cars" id="cars">
+  <option value="volvo">Very Unsatisfied</option>
+  <option value="saab">Unsatisfied</option>
+  <option value="mercedes">Neutral</option>
+  <option value="audi">Satisfied</option>
+  <option value="audi">Very Satisfied</option>
+</select>
+            <!-- <div class="row">
+                <div class="col-md-6">Rating</div>
+                <select class="form-control"
+                (change)="changeRating($event)"
+                name="rating"
+                formControlName="rating">
+                    <option value="">--Your Rating-</option>
+                    <option *ngFor="let rating of RatingsList" [value]="rating.rating_id">
+                        {{ rating.r_category }}
+                    </option>
+                </select>
+            </div> -->
+        <div class="row">
+        <div class="col-md-12"><button type="submit" class="btn btn-warning" name="submit" (click)="submitRatings()"></button></div>
+        </div>
+        <!-- </form> -->
+    </div>
+</div>

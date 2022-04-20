@@ -1,8 +1,6 @@
 export class DishReviews{
-    dishRevId?:number;
-    dishRevQsId?:number;
-    ratingId?: number;
-    dishId?: number;
-    customerId?: number;
-    date?: Date;
+    question_id?:number;
+    rating_id?:number;
+    dish_id?: number;
+    customer_id?: number;
 }
