@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Api
+from flask_cors import CORS
 from flask import jsonify, request
 from datetime import date, datetime, time
 
@@ -30,12 +31,13 @@ from resources.short_review_question import ShortReviewQuestion, ShortReviewQues
 from resources.customer_short_review import CustomerShortReview, CustomerShortReviewList
 from resources.emp_reply import EmployeeReply, EmployeeReplyList
 from resources.customer_redeem import CustomerRedeem, CustomerRedeemList
-from resources.emp_login import EmpLogIn
+# from resources.emp_login import EmpLogIn
 from db import *
 # customer survey
 
 app = Flask(__name__)
 api = Api(app)
+CORS(app)
 
 
 # store api endpoints
@@ -315,6 +317,6 @@ api.add_resource(CustomerRedeem, *cus_redeem_routes)
 api.add_resource(CustomerRedeemList, '/cus-redeems')
 
 # login emp
-api.add_resource(EmpLogIn, '/emp-login')
+# api.add_resource(EmpLogIn, '/emp-login')
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

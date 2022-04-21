@@ -50,4 +50,4 @@ def execute_read_query(connection, query):
 
 
 db_conn = create_connection(
-    '127.0.0.1', 'root', 'Alife355005', 'CIS4375db')
+    '127.0.0.1', 'root', 'password', 'CIS4375db')
