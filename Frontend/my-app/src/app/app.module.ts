@@ -35,6 +35,11 @@ import { ServiceQ4Component } from './BigSurvey/service-q4/service-q4.component'
 import { ServiceQ2Component } from './BigSurvey/service-q2/service-q2.component';
 import { ServiceQ3Component } from './BigSurvey/service-q3/service-q3.component';
 import { EmployeeCommentComponent } from './displaySurveys/employee-comment/employee-comment.component';
+import { EmployeeDetailsComponent } from './NewStart/Employee/employee-details/employee-details.component';
+import { EditEmployeeComponent } from './NewStart/Employee/edit-employee/edit-employee.component';
+import { QuitEmployeeComponent } from './NewStart/Employee/quit-employee/quit-employee.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -68,7 +73,10 @@ import { EmployeeCommentComponent } from './displaySurveys/employee-comment/empl
     ServiceQ2Component,
     ServiceQ3Component,
     ServiceQ4Component,
-    EmployeeCommentComponent
+    EmployeeCommentComponent,
+    EmployeeDetailsComponent,
+    EditEmployeeComponent,
+    QuitEmployeeComponent
 
   ],
   imports: [
@@ -76,7 +84,9 @@ import { EmployeeCommentComponent } from './displaySurveys/employee-comment/empl
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

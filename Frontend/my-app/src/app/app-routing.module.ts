@@ -24,6 +24,7 @@ import { ServiceQ4Component } from './BigSurvey/service-q4/service-q4.component'
 import { EnvironmentQ1Component } from './BigSurvey/environment-q1/environment-q1.component';
 import { EnvironmentQ2Component } from './BigSurvey/environment-q2/environment-q2.component';
 import { EmployeeCommentComponent } from './displaySurveys/employee-comment/employee-comment.component';
+import { EmployeeDetailsComponent } from './NewStart/Employee/employee-details/employee-details.component';
 
 const routes: Routes = [
 { path: '', component: HomePageComponent },
@@ -32,7 +33,7 @@ const routes: Routes = [
 { path: 'long-survey', component: ShortSurveyComponent },
 { path: 'timesheet', component: EmployeeTimesheetComponent },
 { path: 'customer-info', component: CustomerInfoComponent },
-{ path: 'employee-info', component: EmployeeInfoComponent },
+{ path: 'employee-details', component: EmployeeDetailsComponent },
 { path: 'schedule', component: EmployeeScheduleComponent },
 { path: 'add-customer', component: AddCustomerComponent },
 { path: 'add-employee', component: AddEmployeeComponent },

@@ -35,11 +35,6 @@ class Employee(Resource):
                         # required=True,
                         # help="required"
                         )
-    parser.add_argument('quit_date',
-                        type=str,
-                        # required=False,
-                        # help="optional"
-                        )
     parser.add_argument('comment',
                         type=str,
                         # required=False,
@@ -80,6 +75,13 @@ class Employee(Resource):
                         # required=True,
                         # help="required"
                         )
+    parser.add_argument('position',
+                        type=str,)
+    parser.add_argument('quit_date',
+                        type=str,
+                        # required=False,
+                        # help="optional"
+                        )
     # parser.add_argument('name', type=str, default='')
     # parser.add_argument('id', type=int, default='')
 
@@ -112,8 +114,8 @@ class Employee(Resource):
         if res:
             return {'message': "employee already exists in the database"}, 400
         # get input data
-        insert = f"INSERT INTO employee(e_first_name, e_last_name, e_phone, e_email, join_date, quit_date, e_comment, employee_quit_id, job_title_id, store_id) \
-        VALUES('{data['first_name']}', '{data['last_name']}', '{data['phone']}', '{data['email']}', '{data['join_date']}', \
+        insert = f"INSERT INTO employee(e_first_name, e_last_name, e_phone, e_email, position, join_date, quit_date, e_comment, employee_quit_id, job_title_id, store_id) \
+        VALUES('{data['first_name']}', '{data['last_name']}', '{data['phone']}', '{data['email']}', '{data['position']}', '{data['join_date']}', \
         '{data['quit_date']}', '{data['comment']}', {data['employee_quit_id']}, {data['job_title_id']}, \
         {data['store_id']})"
         execute_query(db_conn, insert)
@@ -163,21 +165,6 @@ class Employee(Resource):
 
 class EmployeeList(Resource):
     def get(self):
-        query = """SELECT 
-            e.emp_id, e.e_first_name, e.e_last_name, e.e_phone, e.e_email, e.join_date, e.quit_date, e.e_comment,
-            s.s_name, jt.jt_category, eq.eq_category
-            FROM 
-            employee as e
-            JOIN store as s
-            ON e.store_id = s.store_id
-            JOIN job_title as jt
-            ON e.job_title_id = jt.job_title_id
-            LEFT JOIN employee_quit as eq
-            ON e.employee_quit_id = eq.employee_quit_id"""
+        query = 'SELECT e_first_name, e_last_name, e_phone, e_email, position, join_date, quit_date FROM employee'
         res = execute_read_query_dict(db_conn, query)
-        for i in res:
-            if i['join_date'] != None:
-                i['join_date'] = i['join_date'].strftime("%m/%d/%Y")
-            if i['quit_date'] != None:
-                i['quit_date'] = i['quit_date'].strftime("%m/%d/%Y")
-        return {"employees": res}
+        return {'employees': res}, 200
