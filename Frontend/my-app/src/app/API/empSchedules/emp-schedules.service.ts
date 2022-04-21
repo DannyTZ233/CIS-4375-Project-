@@ -4,6 +4,7 @@ import {API_URL} from '../../env';
 import { map } from 'rxjs';
 import { EmpSchedules } from './empSchedules.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +18,11 @@ export class EmpSchedulesService {
     return this.http.get<EmpSchedules>(this.baseUrl+'/employee-schedules')
   }
 
-  postEmpSchedules(){}
-  updateEmpSchedules(){}
+  postEmpSchedules(){
+    return this.http.get<EmpSchedules>(this.baseUrl+'/employee-schedules-checkin')
+  }
+  updateEmpSchedules(){
+    return this.http.get<EmpSchedules>(this.baseUrl+'/employee-schedules-checkout')
+  }
   deleteEmpSchedules(){}
 }
