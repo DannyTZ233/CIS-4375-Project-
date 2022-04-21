@@ -1,28 +1,17 @@
+from datetime import date
 from flask_restful import Resource, reqparse
 from db import *
 
 
 class EmployeeSchedule(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument('check_in_id',
+    parser.add_argument('check_in_time',
                         type=str,
                         # required=True,
                         help="required"
                         )
 
     parser.add_argument('emp_id',
-                        type=str,
-                        # required=True,
-                        help="required"
-                        )
-
-    parser.add_argument('start_time',
-                        type=str,
-                        # required=True,
-                        help="required"
-                        )
-
-    parser.add_argument('end_time',
                         type=str,
                         # required=True,
                         help="required"
@@ -37,7 +26,7 @@ class EmployeeSchedule(Resource):
                         required=False,
                         help="optional"
                         )
-    parser.add_argument('check_out_id',
+    parser.add_argument('check_out_time',
                         type=str,
                         required=False,
                         help="optional"
@@ -67,6 +56,8 @@ class EmployeeSchedule(Resource):
             return {"employee schedules": res}, 200
         return {'message': 'type not found'}, 404
 
+
+
     def post(self):
         data = EmployeeSchedule.parser.parse_args()
         # get input data
@@ -74,8 +65,8 @@ class EmployeeSchedule(Resource):
             if data[k] is None:
                 data[k] = "null"
 
-        insert = f"INSERT INTO employee_schedule(emp_id, check_in_id, leave_id, check_out_id) \
-        VALUES({data['emp_id']}, {data['check_in_id']}, {data['leave_id']}, {data['check_out_id']})"
+        insert = f"INSERT INTO employee_schedule(emp_id, check_in_time, leave_id, check_out_time) \
+        VALUES({data['emp_id']}, {data['check_in_time']}, {data['leave_id']}, {data['check_out_time']})"
         execute_query(db_conn, insert)
 
         return {'message': 'record added'}, 200
@@ -83,8 +74,17 @@ class EmployeeSchedule(Resource):
     def delete(self, id):
         pass
 
-    def put(self, id):
-        pass
+    def put(self):
+        data = EmployeeSchedule.parser.parse_args()
+        # get input data
+        for k, v in data.items():
+            if data[k] is None:
+                data[k] = "null"
+
+        insert = f"UPDATE employee_schedule SET {data['check_out_time']} WHERE {data['emp_id']} and Date(log_datetime) = current_date()"
+        execute_query(db_conn, insert)
+
+        return {'message': 'record added'}, 200
 
 
 class EmployeeScheduleList(Resource):
@@ -104,7 +104,7 @@ class EmployeeScheduleList(Resource):
                 JOIN job_title as jt
                 ON e.job_title_id = jt.job_title_id """
         res = execute_read_query_dict(db_conn, query)
-        print(res[0]['log_datetime'])
+        #print(res[0]['log_datetime'])
         for i in res:
             if i['log_datetime'] != None:
                 i['log_datetime'] = i['log_datetime'].strftime(
