@@ -1,10 +1,7 @@
 from flask import Flask
 from flask_restful import Api
-from flask_cors import CORS
-from flask import jsonify, request
-from datetime import date, datetime, time
+from flask_cors import CORS , cross_origin
 
-from itsdangerous import json
 # employee
 from resources.store import Store, StoreList
 from resources.employee_quit import EmployeeQuit, EmployeeQuitList
@@ -31,13 +28,12 @@ from resources.short_review_question import ShortReviewQuestion, ShortReviewQues
 from resources.customer_short_review import CustomerShortReview, CustomerShortReviewList
 from resources.emp_reply import EmployeeReply, EmployeeReplyList
 from resources.customer_redeem import CustomerRedeem, CustomerRedeemList
-# from resources.emp_login import EmpLogIn
-from db import *
 # customer survey
 
 app = Flask(__name__)
-api = Api(app)
+
 CORS(app)
+api = Api(app)
 
 
 # store api endpoints
@@ -46,11 +42,7 @@ api.add_resource(StoreList, '/stores')
 
 # # Employee
 # # Empployee quit
-emp_quit_routes = [
-    '/employee-quit',
-    '/employee-quit/<string:category>'
-]
-api.add_resource(EmployeeQuit, *emp_quit_routes)
+api.add_resource(EmployeeQuit, '/employee-quit/<string:category>')
 api.add_resource(EmployeeQuitList, '/employee-quits')
 # # employee leave
 api.add_resource(EmployeeLeave, '/employee-leave/<string:category>')
@@ -78,110 +70,12 @@ api.add_resource(EmployeeList, '/employees')
 emp_sche_routes = [
     '/employee-schedule',
     '/employee-schedule/<id>',
+    '/employee-schedule-checkin',
+    '/employee-schedule-checkout'
 ]
 # # employee schedule
 api.add_resource(EmployeeSchedule, *emp_sche_routes)
 api.add_resource(EmployeeScheduleList, '/employee-schedules')
-
-
-@app.route('/employee-schedules/employees')
-def emps_date():
-    date = request.args.get('date', None)
-    emp_query = f"""
-        SELECT b.e_first_name, b.e_last_name, a.emp_id, check_in_id, check_out_id,log_datetime
-        FROM employee_schedule as a
-        JOIN employee as b
-        ON a.emp_id = b.emp_id
-        WHERE log_datetime LIKE '{date}%'
-    """
-    res = execute_read_query_dict(db_conn, emp_query)
-    for i in res:
-        i['total_time'] = ''
-        if i['log_datetime'] != None:
-            i['log_datetime'] = i['log_datetime'].strftime(
-                "%H:%M:%S ").strip()
-    for i in range(0, len(res)):
-        for j in range(i+1, len(res)):
-            if (res[i]['emp_id'] == res[j]['emp_id']) and res[j]['check_out_id'] != None:
-                check_in_time = datetime.strptime(
-                    res[i]['log_datetime'], "%H:%M:%S")
-                check_out_time = datetime.strptime(
-                    res[j]['log_datetime'], "%H:%M:%S")
-                res[i]['total_time'] = str(check_out_time - check_in_time)
-                print(str(check_out_time - check_in_time))
-    work_time = []
-    for i in res:
-        if i['total_time'] != '':
-            del i['log_datetime']
-            work_time.append(i)
-    return jsonify(work_time)
-
-# customer by zipcode
-
-
-@app.route('/customer/zip-data')
-def cus_zip():
-    query = """
-        SELECT DISTINCT(zip) as zipcode, 
-        COUNT(customer_id) as total FROM customer_info
-        GROUP BY zip;
-    """
-    res = execute_read_query_dict(db_conn, query)
-    return jsonify(res)
-
-
-@app.route('/customer/survey-data')
-def cus_survey():
-    query = """
-            SELECT 
-            DISTINCT(r.r_category), COUNT(ci.customer_id)
-            FROM customer_short_review as csr
-            JOIN short_review_question as srq
-            ON csr.short_review_id = srq.short_review_id 
-            JOIN rating as r
-            ON csr.rating_id = r.rating_id 
-            JOIN customer_info as ci
-            ON csr.customer_id = ci.customer_id
-            GROUP BY r.r_category;
-    """
-    res = execute_read_query_dict(db_conn, query)
-    return jsonify(res)
-
-
-@app.route('/employee-schedule/employee')
-def emp_date():
-    # use default value repalce 'None'
-    emp_id = request.args.get('emp_id', None)
-    curr_date = request.args.get('curr_date', None)
-    today = str(date.today().strftime("%Y-%m-%d"))
-    emp_query = f"""
-        SELECT emp_id, check_in_id, log_datetime, leave_id, check_out_id
-        FROM employee_schedule as a
-        WHERE log_datetime LIKE '{today}%' AND emp_id = '{emp_id}'
-    """
-    emp_info_query = f"""
-        SELECT e_first_name as first_name, e_last_name as last_name
-        FROM employee
-        WHERE emp_id = '{emp_id}'
-    """
-    emp_res = execute_read_query_dict(db_conn, emp_info_query)
-    res = execute_read_query_dict(db_conn, emp_query)
-    for i in res:
-        if i['log_datetime'] != None:
-            i['log_datetime'] = i['log_datetime'].strftime(
-                "%m/%d/%Y, %H:%M:%S ")
-    check_in_out_var = {"checker": 0}
-    print(len(res))
-    if len(res) == 0:
-        check_in_out_var["checker"] = 0
-    if len(res) % 2 == 0 and len(res) > 0:
-        check_in_out_var["checker"] = 2
-    if len(res) % 2 != 0:
-        check_in_out_var["checker"] = 1
-
-    check_in_out_var["employee"] = emp_res
-    return jsonify(check_in_out_var)
-
 
 # customer
 customer_routes = [
@@ -315,8 +209,5 @@ cus_redeem_routes = [
 ]
 api.add_resource(CustomerRedeem, *cus_redeem_routes)
 api.add_resource(CustomerRedeemList, '/cus-redeems')
-
-# login emp
-# api.add_resource(EmpLogIn, '/emp-login')
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
