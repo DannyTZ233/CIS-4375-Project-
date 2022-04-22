@@ -53,12 +53,13 @@ CREATE TABLE employee(
     e_last_name varchar(50) not null,
     e_phone varchar(20) not null,
     e_email varchar(50) not null,
-    join_date date,
+    join_date VARCHAR(50) not null,
     quit_date VARCHAR(50) null,
     e_comment VARCHAR(200) null,
     employee_quit_id int null,
     job_title_id int null,
     store_id int,
+    position varchar(100) not null
     PRIMARY KEY (emp_id)
 );
 
