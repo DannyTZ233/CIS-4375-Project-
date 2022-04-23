@@ -187,7 +187,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"first_name\": \"test emp 4\",\r\n    \"last_name\": \"lee\",\r\n    \"phone\": \"000900\",\r\n    \"email\": \"example@gmail.com\",\r\n    \"position\": \"server\",\r\n    \"store_id\": 1\r\n}",
+									"raw": "{\r\n    \"first_name\": \"Jin\",\r\n    \"last_name\": \"Sao\",\r\n    \"phone\": \"0000000\",\r\n    \"email\": \"example@gmail.com\",\r\n    \"position\": \"Manager\",\r\n    \"store_id\": 1\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -371,7 +371,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{philotech_heroku}}/employee-schedule?id=6&date=2022-04-23",
+									"raw": "{{philotech_heroku}}/employee-schedule?id=2&date=2022-04-23",
 									"host": [
 										"{{philotech_heroku}}"
 									],
@@ -381,7 +381,7 @@
 									"query": [
 										{
 											"key": "id",
-											"value": "6"
+											"value": "2"
 										},
 										{
 											"key": "date",
@@ -398,7 +398,7 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "{{philotech_heroku}}/employee-schedule?id=7",
+									"raw": "{{philotech_heroku}}/employee-schedule?id=2",
 									"host": [
 										"{{philotech_heroku}}"
 									],
@@ -408,7 +408,7 @@
 									"query": [
 										{
 											"key": "id",
-											"value": "7"
+											"value": "2"
 										}
 									]
 								}
@@ -430,7 +430,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{philotech_heroku}}/employee-schedule?id=6",
+									"raw": "{{philotech_heroku}}/employee-schedule?id=2",
 									"host": [
 										"{{philotech_heroku}}"
 									],
@@ -440,7 +440,7 @@
 									"query": [
 										{
 											"key": "id",
-											"value": "6"
+											"value": "2"
 										}
 									]
 								}
@@ -464,6 +464,29 @@
 										{
 											"key": "all_sch",
 											"value": "all"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all employee check in by date",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}/employee-schedule?date=2022-04-23",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"employee-schedule"
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2022-04-23"
 										}
 									]
 								}
