@@ -258,6 +258,25 @@ def emp_sch():
                         if i['log_datetime'] != None:
                             i['log_datetime'] = i['log_datetime'].strftime("%Y-%m-%d")
             return {"employee schedules": all_res}, 200
+        if clock_date:
+            query = f"""SELECT 
+                es.emp_id, 
+                e.e_first_name,
+                e.e_last_name,
+                e.job_title,
+                check_in_time, 
+                check_out_time,
+                log_datetime, 
+                total_time
+                FROM employee_schedule as es
+                JOIN employee e
+                ON es.emp_id = e.emp_id
+                WHERE log_datetime LIKE '{clock_date}%'"""
+            all_res = execute_read_query_dict(mysql_get_mydb(), query)
+            for i in all_res:
+                        if i['log_datetime'] != None:
+                            i['log_datetime'] = i['log_datetime'].strftime("%Y-%m-%d")
+            return {"employee schedules": all_res}, 200
     if flask.request.method == 'POST':
         today = date.today().strftime("%Y-%m-%d")
         print(today)
