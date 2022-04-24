@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 # from flask_restful import Api
 from flask_cors import CORS 
 from datetime import date, datetime
@@ -6,14 +6,29 @@ import flask
 
 from db import *
 
-
+# ===============
+import pandas as pd
+from pandas import json_normalize
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+from wordcloud import ImageColorGenerator
+from wordcloud import STOPWORDS
+from flask import send_file, send_from_directory, safe_join, abort
+from PIL import Image
+import base64
+import io
+# ===============
 app = Flask(__name__)
 
+# ================
+app.config["WORD_CLOUD_IMG"] = "n.png"
+# ================
 CORS(app)
 # api = Api(app)
 @app.route('/', methods=['GET'])
 def home():
     return {"message": "welcome"}
+
 
 @app.route('/store', methods=['GET', 'POST', 'DELETE', 'PUT'])
 def store():
@@ -63,6 +78,7 @@ def store():
                 execute_query(mysql_get_mydb(), delete_query)
                 return {'message': 'record deleted'}
     return {"message": "store not found"}, 404
+
 
 @app.route('/employee', methods=['GET', 'POST', 'PUT'])
 def employee():
@@ -160,6 +176,7 @@ def employee():
                 execute_query(mysql_get_mydb(), update_query)
                 return {'message': 'record updated'}, 201
     return {"message": "employee not found"}, 404
+
 
 @app.route('/login', methods=['POST', 'PUT'])
 def login():
@@ -322,10 +339,82 @@ def emp_sch():
                 return {"message": "employee checked out already"}, 400
     return {"message": "employee not found"}, 404
 
-# @app.route('/customer-survey', methods=['POST'])
-# def cus_survey():
-#     if flask.request.method == 'POST':
-#         data = request.get_json()
+
+@app.route('/customer-survey', methods=['POST', 'GET'])
+def cus_survey():
+    if flask.request.method == 'POST':
+        data = request.get_json()
+        insert_query = f"""
+                INSERT INTO customer_survey
+                (zip_code, service_rating, environment_rating, food_rating, over_all_rating, sur_comment)
+                VALUES (
+                    '{data['zip_code']}',
+                    '{data['service']}',
+                    '{data['environment']}',
+                    '{data['food']}',
+                    '{data['over_all_rating']}',
+                    '{data['comment']}'
+                )
+        """
+        execute_query(mysql_get_mydb(), insert_query)
+        return {"message": "record added"}, 201
+    if flask.request.method == 'GET':
+        query = """SELECT  
+            zip_code, service_rating, environment_rating, food_rating, over_all_rating, sur_comment
+        FROM customer_survey"""
+        res = execute_read_query_dict(mysql_get_mydb(), query) 
+        return {"survey": res}, 200
+
+
+@app.route('/customer-survey/report', methods=['POST', 'GET'])
+def survey_report():
+    zip = request.args.get('zip', None)
+    food = request.args.get('food', None)
+    env = request.args.get('env', None)
+    service = request.args.get('service', None)
+    over_all = request.args.get('overall', None)
+    wordcloud = request.args.get('wordcloud', None)
+    def report_query(survey_type):
+        query = f"""
+            SELECT {survey_type}, COUNT(cus_sur_id) as 'total count'
+            FROM customer_survey
+            GROUP BY {survey_type}
+            UNION ALL SELECT NULL, COUNT(zip_code) 
+            FROM customer_survey;
+            """
+        res = execute_read_query_dict(mysql_get_mydb(), query)
+        return res
+    if flask.request.method == 'GET':
+        if zip:
+            res = report_query(survey_type = 'zip_code')
+            return {"zipcode": res}, 201
+        if food:
+            res = report_query(survey_type = 'food_rating')
+            return {"food rating": res}, 201
+        if env:
+            res = report_query(survey_type = 'environment_rating')
+            return {"env rating": res}, 201
+        if service:
+            res = report_query(survey_type = 'service_rating')
+            return {"service rating": res}, 201
+        if over_all:
+            res = report_query(survey_type = 'over_all_rating')
+            return {"service rating": res}, 201
+        if wordcloud:
+            query = "SELECT sur_comment FROM customer_survey"
+            res = execute_read_query_dict(mysql_get_mydb(), query)
+            df = json_normalize(res) 
+            text = " ".join(i for i in df.sur_comment)
+            stopwords = set(STOPWORDS)
+            wordcloud = WordCloud(stopwords=stopwords, background_color="white").generate(text)
+            wordcloud.to_file('N.png')
+            im = Image.open("N.png")
+            data = io.BytesIO()
+            im.save(data, "PNG")
+            encoded_img_data = base64.b64encode(data.getvalue())
+            return render_template('index.html', img_data=encoded_img_data.decode('utf-8'))
+        return {"message": "data not found"}, 404
+
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
