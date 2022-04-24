@@ -476,9 +476,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{localhost}}/employee-schedule?date=2022-04-23",
+									"raw": "{{philotech_heroku}}/employee-schedule?date=2022-04-23",
 									"host": [
-										"{{localhost}}"
+										"{{philotech_heroku}}"
 									],
 									"path": [
 										"employee-schedule"
@@ -621,6 +621,198 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "Survey",
+			"item": [
+				{
+					"name": "Add new survey",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"zip_code\": \"77777\",\r\n    \"service\": 5,\r\n    \"environment\": 4,\r\n    \"food\": 5,\r\n    \"over_all_rating\": 4,\r\n    \"comment\": \"very good over all\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/customer-survey",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"customer-survey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all customer survey",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/customer-survey",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"customer-survey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get report by zipcode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/customer-survey/report?zip=1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"customer-survey",
+								"report"
+							],
+							"query": [
+								{
+									"key": "zip",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get report by food",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/customer-survey/report?food=1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"customer-survey",
+								"report"
+							],
+							"query": [
+								{
+									"key": "food",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get report by environment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/customer-survey/report?env=1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"customer-survey",
+								"report"
+							],
+							"query": [
+								{
+									"key": "env",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get report by service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/customer-survey/report?service=1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"customer-survey",
+								"report"
+							],
+							"query": [
+								{
+									"key": "service",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get report by overall",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/customer-survey/report?overall=1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"customer-survey",
+								"report"
+							],
+							"query": [
+								{
+									"key": "overall",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dont request this now Get wordcloud",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{philotech_heroku}}/customer-survey/report?wordcloud=1",
+							"host": [
+								"{{philotech_heroku}}"
+							],
+							"path": [
+								"customer-survey",
+								"report"
+							],
+							"query": [
+								{
+									"key": "wordcloud",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
