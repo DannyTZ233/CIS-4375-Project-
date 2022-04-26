@@ -14,7 +14,7 @@ export class EmployeeService {
   constructor(private http: HttpClient) { }
 
   getEmployees(){
-    return this.http.get<Employee[]>(this.baseURL+'/employees')
+    return this.http.get<Employee[]>(this.baseURL+'/employee?employees=all')
   }
 
   postEmployees(e_first_name:any, e_last_name:any, e_phone:any, e_email:any, position:any, quit_date:any, join_date:any ){
