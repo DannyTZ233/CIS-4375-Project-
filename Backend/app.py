@@ -131,8 +131,8 @@ def employee():
         insert = f"""
                 INSERT INTO employee
                 (e_first_name, e_last_name, e_phone, e_email, job_title, store_id) \
-                VALUES('{data['first_name']}', '{data['last_name']}', '{data['phone']}', 
-                '{data['email']}', '{data['position']}', '{data['store_id']}')"""
+                VALUES('{data['e_first_name']}', '{data['e_last_name']}', '{data['e_phone']}', 
+                '{data['e_email']}', '{data['job_title']}', '{data['store_id']}')"""
         execute_query(mysql_get_mydb(), insert)
         return {'message': 'record added'}, 200
 

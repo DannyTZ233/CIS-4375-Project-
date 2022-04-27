@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../employee.service';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 
 @Component({
@@ -10,20 +14,57 @@ import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 })
 export class EmployeeDetailsComponent implements OnInit {
 
-  employees: any;
+  displayedColumns: string[] = ['name', 'e_phone', 'e_email', 'join_date', 
+  'quit_date', 'job_title', 'action'];
+  dataSource!: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private router: Router,
-    private employeeService: EmployeeService) { }
+    private employeeService: EmployeeService,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.getAllEmployees();
+  }
+
+  openDialog() {
+    this.dialog.open(AddEmployeeComponent, {
+      width:'30%'
+    });
+  }
+
+  getAllEmployees(){
     this.employeeService.getEmployees()
-    .subscribe((data:any)=>{
-      this.employees=data.employees;
+    .subscribe({
+      next:(res)=>{
+        this.dataSource = new MatTableDataSource(res.employees);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      error:(err)=>{
+        alert("Error while retrieving records")
+      }
     })
   }
 
-  openAdd(){  }
-  edit(){}
+  editEmployee(row:any){
+    this.dialog.open(AddEmployeeComponent,{
+      width:'30%',
+      data:row
+    })
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   quit(){}
 
 }

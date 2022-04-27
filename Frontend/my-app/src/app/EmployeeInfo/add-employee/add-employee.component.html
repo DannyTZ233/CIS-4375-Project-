@@ -1,1 +1,36 @@
-<p>add-employee works!</p>
+<h1 mat-dialog-title>Add Employee Form</h1>
+<div mat-dialog-content>
+    <form [formGroup]="employeeForm">
+        <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input formControlName="e_first_name" matInput placeholder="John">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input formControlName="e_last_name" matInput placeholder="Smith">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input formControlName="e_phone" matInput placeholder="555-555-5555" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input formControlName="e_email" matInput placeholder="myemail@gmail.com" type="email">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Position</mat-label>
+            <input formControlName="job_title" matInput placeholder="Waiter">
+          </mat-form-field>
+          <!-- <mat-form-field appearance="outline">
+            <mat-label>Join Date</mat-label>
+            <input formControlName="join_date" matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field> -->
+    </form>     
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addEmployee()">{{actionBtn}}</button>
+</div>
