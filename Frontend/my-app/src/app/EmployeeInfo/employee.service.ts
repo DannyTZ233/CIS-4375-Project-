@@ -14,16 +14,18 @@ export class EmployeeService {
   constructor(private http: HttpClient) { }
 
   getEmployees(){
-    return this.http.get<Employee[]>(this.baseURL+'/employees')
+    return this.http.get<any>(this.baseURL+'/employee?employees=all')
   }
 
-  postEmployees(e_first_name:any, e_last_name:any, e_phone:any, e_email:any, position:any, quit_date:any, join_date:any ){
-    return this.http.post<any>(this.baseURL+'/employee',
-    {e_first_name, e_last_name, e_phone, e_email, position, quit_date, join_date })
-    .pipe(map(Employees => {
-      return Employees;
-    }))
+  postEmployee(data: any){
+    return this.http.post<any>(this.baseURL+'employee', data);
   }
 
-  updateEmployees(){}
+  putEmployee(data:any, id: number){
+    return this.http.put<any>(this.baseURL+`employee?id=${id}`, data)
+  }
+
+  quitEmployee(data: any, id: number){
+    return this.http.put<any>(this.baseURL+`employee?id=${id}&quit=1`, data)
+  }
 }
