@@ -1,7 +1,7 @@
 <html>
     
     <br><h1 id="tittle">Analytics</h1> <br> <br> <br>
-    
+
     <!-- Service Ratings Button to show analytics -->
     <button (click)="clickServiceR()" type="button">Service Ratings</button> 
         <div *ngIf="ServiceR"  > 
@@ -43,28 +43,43 @@
           </canvas>
         </div> 
 
-    <!-- Age group button to show analytics -->
-    <button (click)="clickZipcodeE()" type="button">Zipcode Report</button>
+    <!-- Zip code group button to show analytics -->
+    <button (click)="clickZipcodeE()" type="button">Zip Code Report</button>
         <div *ngIf="zipcode">
-            <canvas
+            <!-- <canvas
             baseChart
             [data]="zipcodedata"
             [type]="'bar'"
             [options]="zipopt"
           >
-          </canvas>
+          </canvas> -->
+          <table class="table table-hover table-sm">
+            <thead>
+              <tr>
+                <th>Zip Code</th>
+                <th>Total Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let zip of zipcodecount">
+                <td>{{zip.zipcode}}</td>
+                <td>{{zip.total}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
     <!-- Short survey review  -->
-    <button (click)="clickShortS()" type="button">Short Survey Report</button>
-    <div *ngIf="shortsurvey">
-        <canvas
+    <button (click)="clickShortS()" type="button">Survey Report</button>
+    <div *ngIf="survey">
+        <!-- <canvas
         baseChart
         [data]="shortReview"
         [type]="'bar'"
         [options]="shortRopt"
       >
-      </canvas>
+      </canvas> -->
+
     </div>
 
 </html> 

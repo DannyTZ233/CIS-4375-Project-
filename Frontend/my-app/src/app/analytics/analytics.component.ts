@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BubbleController, ChartData, ChartOptions } from 'chart.js';
 import { Router } from '@angular/router';
 import { CountZipcodeService } from '../API/zipcodeReport/zipcode-count.service';
+import {SurveyDataReport} from '../API/surveyReport/survey-report.service';
 
 @Component({
   selector: 'app-analytics',
@@ -10,15 +11,22 @@ import { CountZipcodeService } from '../API/zipcodeReport/zipcode-count.service'
 })
 export class AnalyticsComponent implements OnInit {
 
-  Zipcodes : any;  
+  zipcodecount : any;  
+  surveyReport: any;
   constructor(private route: Router,
-    private zipcodeCount: CountZipcodeService) { }
+    private zipCount: CountZipcodeService,
+    private surveydataReport:SurveyDataReport) { }
 
 
   ngOnInit(): void {
-    this.zipcodeCount.getZipCount()
+    this.zipCount.getZipCount()
     .subscribe((data:any)=>{
-      this.Zipcodes=data.Zipcodes;
+      this.zipcodecount=data.zipcodecount;
+    }),
+
+    this.surveydataReport.getSurveryReport()
+    .subscribe((data:any)=>{
+      this.surveyReport=data.surveyReport;
     })
   }
   
@@ -114,44 +122,19 @@ export class AnalyticsComponent implements OnInit {
   };
 
 
-
 /* -----------------------Age Groups--------------------------------------------------- */
-  // age group button
+  // zipcode report button
   zipcode=false;
   clickZipcodeE(){
     this.zipcode=!this.zipcode;
   }
 
-  // zipcode bar graph
-  zipcodedata: ChartData<'line'> = {
-    labels: ['69865', '03597', '81179', '50395','86412','32801','74544','45275','67737','28803'],
-  datasets: [
-    { label: 'Total', data: [5, 2, 5, 1, 1,3,3,4,1,5], tension: 0.10 },
-  ],
-
-  
-};
-  zipopt: ChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      title: {
-        display: true,
-        text: 'Zipcode Report',
-      },
-      
-      legend: {
-        position: 'right'
-      }
-    }
-  };
-
 // -------------------------- Short survey reviews ------------
 
 // button for short survey
-shortsurvey=false;
+survey=false;
 clickShortS(){
-  this.shortsurvey=!this.shortsurvey;
+  this.survey=!this.survey;
 }
 
 // short survey review zipcode
