@@ -26,6 +26,8 @@ export class AddEmployeeComponent implements OnInit {
       store_id : 1
     });
 
+    console.log(editData)
+
     if(this.editData){
       this.actionBtn = "Update";
       this.employeeForm.controls['e_first_name'].setValue(this.editData.e_first_name);
@@ -42,13 +44,14 @@ export class AddEmployeeComponent implements OnInit {
   addEmployee(){
       if(!this.editData){
         if(this.employeeForm.valid){
+          console.log(this.employeeForm.value)
           this.employeeService.postEmployee(
             this.employeeForm.value)
             .subscribe({
               next:(res)=>{
                 alert("Employee added successfully")
                 this.employeeForm.reset();
-                this.dialogRef.close();
+                this.dialogRef.close('save');
               },
               error:()=>{
                 alert("Employee phone number already exists in records")
@@ -67,7 +70,7 @@ export class AddEmployeeComponent implements OnInit {
       next:(res)=>{
         alert("Employee updated successfully")
         this.employeeForm.reset();
-        this.dialogRef.close();
+        this.dialogRef.close('update');
       },
       error:(err)=>{
         alert("Error while updating record")

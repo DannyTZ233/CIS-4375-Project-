@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { EmployeeService } from '../employee.service';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AddEmployeeComponent } from '../add-employee/add-employee.component';
+import { QuitEmployeeComponent } from '../quit-employee/quit-employee.component';
 
 @Component({
   selector: 'app-employee-details',
@@ -32,7 +33,11 @@ export class EmployeeDetailsComponent implements OnInit {
   openDialog() {
     this.dialog.open(AddEmployeeComponent, {
       width:'30%'
-    });
+    }).afterClosed().subscribe(val=>{
+      if(val==='save'){
+        this.getAllEmployees();
+      }
+    })
   }
 
   getAllEmployees(){
@@ -53,6 +58,21 @@ export class EmployeeDetailsComponent implements OnInit {
     this.dialog.open(AddEmployeeComponent,{
       width:'30%',
       data:row
+    }).afterClosed().subscribe(val=>{
+      if(val==='update'){
+        this.getAllEmployees();
+      }
+    })
+  }
+
+  quitEmployee(row:any){
+    this.dialog.open(QuitEmployeeComponent,{
+      width:'30%',
+      data:row
+    }).afterClosed().subscribe(val=>{
+      if(val==='quit'){
+        this.getAllEmployees();
+      }
     })
   }
 
@@ -64,7 +84,5 @@ export class EmployeeDetailsComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
-  quit(){}
 
 }

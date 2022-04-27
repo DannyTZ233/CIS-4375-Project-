@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Add Employee Form</h1>
+<h1 mat-dialog-title>Employee Form</h1>
 <div mat-dialog-content>
     <form [formGroup]="employeeForm">
         <mat-form-field appearance="outline">
@@ -21,13 +21,6 @@
             <mat-label>Position</mat-label>
             <input formControlName="job_title" matInput placeholder="Waiter">
           </mat-form-field>
-          <!-- <mat-form-field appearance="outline">
-            <mat-label>Join Date</mat-label>
-            <input formControlName="join_date" matInput [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field> -->
     </form>     
 </div>
 <div mat-dialog-action [align]="'end'">

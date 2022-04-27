@@ -124,7 +124,7 @@ def employee():
                 return {'employees': res}, 200
     if flask.request.method == 'POST':
         data = request.get_json()
-        query = f"SELECT * FROM employee WHERE e_phone = '{data['phone']}'"
+        query = f"SELECT * FROM employee WHERE e_phone = '{data['e_phone']}'"
         res = execute_read_query(mysql_get_mydb(), query)
         if res:
             return {'message': "employee already exists in the database"}, 400
@@ -146,6 +146,20 @@ def employee():
                 return {'message': 'record deleted'}, 201
     
     if flask.request.method =='PUT':
+        data = request.get_json()
+        query = f"SELECT * FROM employee WHERE emp_id='{emp_id}'"
+        res = execute_read_query(mysql_get_mydb(), query)
+        if res:
+            update_query = f"""
+                    UPDATE employee 
+                    SET e_first_name = '{data['e_first_name']}',
+                    e_last_name = '{data['e_last_name']}',
+                    e_phone = '{data['e_phone']}',
+                    e_email = '{data['e_email']}',
+                    job_title = '{data['job_title']}'
+                    WHERE emp_id = '{emp_id}'"""
+            execute_query(mysql_get_mydb(), update_query)
+            return {'message': 'record updated'}, 201
         if quit_checker:
             today = date.today().strftime("%m/%d/%Y")
             query = f"SELECT * FROM employee WHERE emp_id='{emp_id}'"
@@ -376,7 +390,7 @@ def survey_report():
     wordcloud = request.args.get('wordcloud', None)
     def report_query(survey_type):
         query = f"""
-            SELECT {survey_type}, COUNT(cus_sur_id) as 'total count'
+            SELECT {survey_type}, COUNT(cus_sur_id) as 'total_count'
             FROM customer_survey
             GROUP BY {survey_type}
             UNION ALL SELECT NULL, COUNT(zip_code) 
@@ -390,16 +404,16 @@ def survey_report():
             return {"zipcode": res}, 201
         if food:
             res = report_query(survey_type = 'food_rating')
-            return {"food rating": res}, 201
+            return {"food_rating": res}, 201
         if env:
             res = report_query(survey_type = 'environment_rating')
-            return {"env rating": res}, 201
+            return {"env_rating": res}, 201
         if service:
             res = report_query(survey_type = 'service_rating')
-            return {"service rating": res}, 201
+            return {"service_rating": res}, 201
         if over_all:
             res = report_query(survey_type = 'over_all_rating')
-            return {"service rating": res}, 201
+            return {"over_all__serv_rating": res}, 201
         if wordcloud:
             query = "SELECT sur_comment FROM customer_survey"
             res = execute_read_query_dict(mysql_get_mydb(), query)

@@ -24,12 +24,6 @@
           <td mat-cell *matCellDef="let row"> {{row.e_first_name}} {{row.e_last_name}} </td>
         </ng-container>
     
-        <!-- Last Name Column -->
-        <ng-container matColumnDef="e_last_name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
-          <td mat-cell *matCellDef="let row"> {{row.e_last_name}} </td>
-        </ng-container>
-    
         <!-- Phone Column -->
         <ng-container matColumnDef="e_phone">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone # </th>
@@ -56,7 +50,7 @@
 
         <!-- Quit Date Column -->
         <ng-container matColumnDef="quit_date">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Quit Date </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Leave Date </th>
           <td mat-cell *matCellDef="let row"> {{row.quit_date}} </td>
         </ng-container>
 
@@ -67,7 +61,7 @@
             <button mat-icon-button (click)="editEmployee(row)" color="primary">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn">
+            <button mat-icon-button (click)="quitEmployee(row)" color="warn">
               <mat-icon>remove_circle_outline</mat-icon>
             </button>
           </td>
@@ -86,36 +80,3 @@
     </div>
     </div>
 </div>
-
-  <!-- <div class="container-fluid">
-    <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Name </th>
-        <th scope="col">Phone</th>
-        <th scope="col">Email</th>
-        <th scope="col">Position</th>
-        <th scope="col">Join Date</th>
-        <th scope="col">Quit Date</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Quit?</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let employee of employees">
-        <td>{{employee.e_first_name}} {{employee.e_last_name}}</td>
-        <td>{{employee.e_phone}}</td>
-        <td>{{employee.e_email}}</td>
-        <td>{{employee.job_title}}</td>
-        <td>{{employee.join_date}}</td>
-        <td>{{employee.quit_date}}</td>
-        <td>
-          <button class="btn btn-secondary" style="margin-right: 2px;" (click)="edit()">Edit</button>
-        </td>
-        <td>
-            <button class="btn btn-warning" style="margin-right: 2px;" (click)="quit()">Quit</button>
-          </td>
-    </tr>
-    </tbody>
-  </table>
-  </div> -->
