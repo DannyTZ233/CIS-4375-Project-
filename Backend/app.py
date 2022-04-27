@@ -413,7 +413,7 @@ def survey_report():
             return {"service_rating": res}, 201
         if over_all:
             res = report_query(survey_type = 'over_all_rating')
-            return {"over_all__serv_rating": res}, 201
+            return {"over_all_serv_rating": res}, 201
         if wordcloud:
             query = "SELECT sur_comment FROM customer_survey"
             res = execute_read_query_dict(mysql_get_mydb(), query)
