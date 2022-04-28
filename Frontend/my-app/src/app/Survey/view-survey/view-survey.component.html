@@ -1,0 +1,66 @@
+<mat-toolbar color="primary">
+    <mat-icon>inbox</mat-icon>
+    <span style="margin-left: 5px;"> Survey Responses</span>
+  </mat-toolbar>
+  
+  <div class="container">
+    <div style="margin-top: 10px;">
+      <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      </mat-form-field>
+      
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+      
+          <!-- Zip Code -->
+          <ng-container matColumnDef="zip_code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Zip Code </th>
+            <td mat-cell *matCellDef="let row"> {{row.zip_code}} </td>
+          </ng-container>
+      
+          <!-- Service Rating -->
+          <ng-container matColumnDef="service_rating">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Service Rating </th>
+            <td mat-cell *matCellDef="let row"> {{row.service_rating}} </td>
+          </ng-container>
+      
+          <!-- Environment Rating -->
+          <ng-container matColumnDef="environment_rating">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Environment Rating </th>
+            <td mat-cell *matCellDef="let row"> {{row.environment_rating}} </td>
+          </ng-container>
+  
+          <!-- Food Rating -->
+          <ng-container matColumnDef="food_rating">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Food Rating </th>
+            <td mat-cell *matCellDef="let row"> {{row.food_rating}} </td>
+          </ng-container>
+  
+          <!-- Overall Rating -->
+          <ng-container matColumnDef="over_all_rating">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Overall Rating </th>
+            <td mat-cell *matCellDef="let row"> {{row.over_all_rating}} </td>
+          </ng-container>
+  
+          <!-- Comments -->
+          <ng-container matColumnDef="sur_comment">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Comments </th>
+            <td mat-cell *matCellDef="let row"> {{row.sur_comment}} </td>
+          </ng-container>
+
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+      </div>
+  </div>
+  

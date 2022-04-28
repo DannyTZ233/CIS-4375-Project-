@@ -29,6 +29,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import { SurveyComponent } from './Survey/survey/survey.component';
+import { ViewSurveyComponent } from './Survey/view-survey/view-survey.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,9 @@ import {MatSortModule} from '@angular/material/sort';
     AddCustomerComponent,
     AddEmployeeComponent,
     EmployeeDetailsComponent,
-    QuitEmployeeComponent
+    QuitEmployeeComponent,
+    SurveyComponent,
+    ViewSurveyComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +71,10 @@ import {MatSortModule} from '@angular/material/sort';
     MatNativeDateModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatCardModule,
+    MatDividerModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

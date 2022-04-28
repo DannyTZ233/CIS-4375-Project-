@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
-import { Employee } from './employee.model';
 import { API_URL } from '../env';
 
 @Injectable({

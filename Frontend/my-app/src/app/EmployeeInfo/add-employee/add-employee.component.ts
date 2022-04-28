@@ -26,8 +26,6 @@ export class AddEmployeeComponent implements OnInit {
       store_id : 1
     });
 
-    console.log(editData)
-
     if(this.editData){
       this.actionBtn = "Update";
       this.employeeForm.controls['e_first_name'].setValue(this.editData.e_first_name);
@@ -44,7 +42,6 @@ export class AddEmployeeComponent implements OnInit {
   addEmployee(){
       if(!this.editData){
         if(this.employeeForm.valid){
-          console.log(this.employeeForm.value)
           this.employeeService.postEmployee(
             this.employeeForm.value)
             .subscribe({

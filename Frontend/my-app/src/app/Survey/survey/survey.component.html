@@ -1,0 +1,98 @@
+<mat-card class="survey-card">
+    <mat-card-header>
+        <mat-card-title>
+            <mat-icon>create</mat-icon>
+            Customer Survey
+        </mat-card-title>
+        <mat-card-subtitle>
+            Please rate each section from 1 to 5,
+             with 1 being Very Unsatisfactory and 5 being Very Satisfactory</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <br>
+    <mat-card-content>
+        <form [formGroup]="surveyForm">
+            <div>1. How was the service? <span style="color: red;">*</span></div>
+        <br>
+        <div>
+            <mat-radio-group aria-label="Select an option" formControlName="service">
+                <mat-radio-button value="1">1</mat-radio-button>
+                <mat-radio-button value="2">2</mat-radio-button>
+                <mat-radio-button value="3">3</mat-radio-button>
+                <mat-radio-button value="4">4</mat-radio-button>
+                <mat-radio-button value="5">5</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
+        <div>2. How was the environment? <span style="color: red;">*</span></div>
+        <br>
+        <div>
+            <mat-radio-group aria-label="Select an option" formControlName="environment">
+                <mat-radio-button value="1">1</mat-radio-button>
+                <mat-radio-button value="2">2</mat-radio-button>
+                <mat-radio-button value="3">3</mat-radio-button>
+                <mat-radio-button value="4">4</mat-radio-button>
+                <mat-radio-button value="5">5</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
+        <div>3. How was the food quality? <span style="color: red;">*</span></div>
+        <br>
+        <div>
+            <mat-radio-group aria-label="Select an option" formControlName="food">
+                <mat-radio-button value="1">1</mat-radio-button>
+                <mat-radio-button value="2">2</mat-radio-button>
+                <mat-radio-button value="3">3</mat-radio-button>
+                <mat-radio-button value="4">4</mat-radio-button>
+                <mat-radio-button value="5">5</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
+        <div>4. How was the overall quality? <span style="color: red;">*</span></div>
+        <br>
+        <div>
+            <mat-radio-group aria-label="Select an option" formControlName="over_all_rating">
+                <mat-radio-button value="1">1</mat-radio-button>
+                <mat-radio-button value="2">2</mat-radio-button>
+                <mat-radio-button value="3">3</mat-radio-button>
+                <mat-radio-button value="4">4</mat-radio-button>
+                <mat-radio-button value="5">5</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
+        <div>5. Please provide any suggestions or additional comments:</div>
+        <br>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Comment</mat-label>
+                <textarea matInput maxlength="100" placeholder="(100 chr. limit)" formControlName="comment"></textarea>
+              </mat-form-field>
+        </div>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
+        <div>Enter your Zip Code: <span style="color: red;">*</span></div>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Zip Code</mat-label>
+            <input matInput formControlName="zip_code">
+          </mat-form-field>
+        </form>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
+        <div style="font-size:smaller"><span style="color: red;">* </span> Required field</div>
+    </mat-card-content>
+    <mat-card-actions [align]="'end'">
+        <button mat-fab color="primary" (click)="submitSurvey()">Submit</button>
+        <button mat-fab color="warn" style="margin-left: 20px;" (click)="clearSurvey()">Clear</button>
+      </mat-card-actions>
+</mat-card>
