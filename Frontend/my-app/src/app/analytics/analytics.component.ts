@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BubbleController, ChartData, ChartOptions } from 'chart.js';
 import { Router } from '@angular/router';
-import { CountZipcodeService } from '../API/zipcodeReport/zipcode-count.service';
+import { CountZipcodeService } from '../API/surveyReport/zipcodeReport/zipcode-count.service';
+import {CountFoodRating} from '../API/surveyReport/foodRatingReport/food-rating.service';
+import {CountEnvironmentRating} from '../API/surveyReport/envRatingReport/environment-rating.service';
+import { CountServiceRating } from '../API/surveyReport/serviceReport/service-rating.service';
+import { CountOverallRating } from '../API/surveyReport/overallRatingReport/overall-rating.service';
 
 @Component({
   selector: 'app-analytics',
@@ -10,20 +14,52 @@ import { CountZipcodeService } from '../API/zipcodeReport/zipcode-count.service'
 })
 export class AnalyticsComponent implements OnInit {
 
-  Zipcodes : any;  
+  zipcode : any;  
+  food_rating: any;
+  env_rating: any;
+  service_rating: any;
+  over_all_serv_rating: any;
+
+
   constructor(private route: Router,
-    private zipcodeCount: CountZipcodeService) { }
+    private zipCount: CountZipcodeService,
+    private foodRatingCount:CountFoodRating,
+    private envRatingCount: CountEnvironmentRating,
+    private serviceRatingCount: CountServiceRating,
+    private overallRatingCount: CountOverallRating
+     ) { }
 
 
   ngOnInit(): void {
-    this.zipcodeCount.getZipCount()
+    this.zipCount.getZipCount()
     .subscribe((data:any)=>{
-      this.Zipcodes=data.Zipcodes;
+      this.zipcode=data.zipcode;
     })
+
+    this.foodRatingCount.getFoodRating()
+    .subscribe((data:any)=>{
+      this.food_rating=data.food_rating;
+    })
+
+    this.envRatingCount.getEnvironmentRating()
+    .subscribe((data:any)=>{
+        this.env_rating=data.env_rating
+      })
+
+    this.serviceRatingCount.getServiceRating()
+    .subscribe((data:any)=>{
+      this.service_rating=data.service_rating
+    })
+
+    this.overallRatingCount.getOverallRating()
+    .subscribe((data:any)=>{
+      this.over_all_serv_rating=data.over_all_serv_rating
+    })
+
   }
   
 
-  // when service rating button clicked- will display data underneath
+  /* -----------------------when service rating button clicked- will display data underneath--------------------------------------------------- */
   ServiceR= false;
   clickServiceR(){
     this.ServiceR=!this.ServiceR;
@@ -53,9 +89,9 @@ export class AnalyticsComponent implements OnInit {
 
 /* -----------------------Enviroment Reviews--------------------------------------------------- */
   // enviroment reviews button
-  EnviromentR= false;
-  clickEnviromentR(){
-    this.EnviromentR=!this.EnviromentR;
+  EnvironmentR= false;
+  clickEnvironmentR(){
+    this.EnvironmentR=!this.EnvironmentR;
   }
 
 //env. review bar graph
@@ -114,44 +150,19 @@ export class AnalyticsComponent implements OnInit {
   };
 
 
-
-/* -----------------------Age Groups--------------------------------------------------- */
-  // age group button
-  zipcode=false;
+/* -----------------------Zipcode Count Report--------------------------------------------------- */
+  // zipcode report button
+  zipcodebutton=false;
   clickZipcodeE(){
-    this.zipcode=!this.zipcode;
+    this.zipcodebutton=!this.zipcodebutton;
   }
-
-  // zipcode bar graph
-  zipcodedata: ChartData<'line'> = {
-    labels: ['69865', '03597', '81179', '50395','86412','32801','74544','45275','67737','28803'],
-  datasets: [
-    { label: 'Total', data: [5, 2, 5, 1, 1,3,3,4,1,5], tension: 0.10 },
-  ],
-
-  
-};
-  zipopt: ChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      title: {
-        display: true,
-        text: 'Zipcode Report',
-      },
-      
-      legend: {
-        position: 'right'
-      }
-    }
-  };
 
 // -------------------------- Short survey reviews ------------
 
 // button for short survey
-shortsurvey=false;
-clickShortS(){
-  this.shortsurvey=!this.shortsurvey;
+overallR=false;
+clickOverallR(){
+  this.overallR=!this.overallR;
 }
 
 // short survey review zipcode
@@ -176,4 +187,3 @@ shortRopt: ChartOptions = {
 };
  
 }
-

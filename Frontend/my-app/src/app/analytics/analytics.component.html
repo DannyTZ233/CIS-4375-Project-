@@ -1,7 +1,20 @@
 <html>
     
     <br><h1 id="tittle">Analytics</h1> <br> <br> <br>
-    
+    <table class="table table-hover table-sm">
+      <thead>
+        <tr>
+          <th>Zip Code</th>
+          <th>Total Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let env of over_all_serv_rating">
+          <td>{{env.over_all_rating}}</td>
+          <td>{{env.total_count}}</td>
+        </tr>
+      </tbody>
+    </table>
     <!-- Service Ratings Button to show analytics -->
     <button (click)="clickServiceR()" type="button">Service Ratings</button> 
         <div *ngIf="ServiceR"  > 
@@ -18,8 +31,8 @@
 
 
     <!-- Enviroment Ratings button to show analytics -->
-    <button (click)="clickEnviromentR()" type="button">Enviroment Ratings</button> 
-        <div *ngIf="EnviromentR">
+    <button (click)="clickEnvironmentR()" type="button">Environment Ratings</button> 
+        <div *ngIf="EnvironmentR">
             <canvas
                 baseChart
                 [data]="envdata"
@@ -43,28 +56,43 @@
           </canvas>
         </div> 
 
-    <!-- Age group button to show analytics -->
-    <button (click)="clickZipcodeE()" type="button">Zipcode Report</button>
-        <div *ngIf="zipcode">
-            <canvas
+    <!-- Zip code group button to show analytics -->
+    <button (click)="clickZipcodeE()" type="button">Zip Code Report</button>
+        <div *ngIf="zipcodebutton">
+            <!-- <canvas
             baseChart
             [data]="zipcodedata"
             [type]="'bar'"
             [options]="zipopt"
           >
-          </canvas>
+          </canvas> -->
+          <table class="table table-hover table-sm">
+            <thead>
+              <tr>
+                <th>Zip Code</th>
+                <th>Total Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let zip of zipcode">
+                <td>{{zip.zip_code}}</td>
+                <td>{{zip.total_count}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-    <!-- Short survey review  -->
-    <button (click)="clickShortS()" type="button">Short Survey Report</button>
-    <div *ngIf="shortsurvey">
-        <canvas
+    <!-- Overall rating review -->
+    <button (click)="clickOverallR()" type="button">Survey Report</button>
+    <div *ngIf="overallR">
+        <!-- <canvas
         baseChart
         [data]="shortReview"
         [type]="'bar'"
         [options]="shortRopt"
       >
-      </canvas>
+      </canvas> -->
+
     </div>
 
 </html> 
