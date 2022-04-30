@@ -1,31 +1,32 @@
 <html>
     
     <br><h1 id="tittle">Analytics</h1> <br> <br> <br>
-    <table class="table table-hover table-sm">
-      <thead>
-        <tr>
-          <th>Zip Code</th>
-          <th>Total Count</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let env of over_all_serv_rating">
-          <td>{{env.over_all_rating}}</td>
-          <td>{{env.total_count}}</td>
-        </tr>
-      </tbody>
-    </table>
+
     <!-- Service Ratings Button to show analytics -->
     <button (click)="clickServiceR()" type="button">Service Ratings</button> 
         <div *ngIf="ServiceR"  > 
             
-                <canvas
+          <table class="table table-hover table-sm">
+            <thead>
+              <tr>
+                <th>Service Rating</th>
+                <th>Total Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let service of service_rating">
+                <td>{{service.service_rating}}</td>
+                <td>{{service.total_count}}</td>
+              </tr>
+            </tbody>
+          </table>
+                <!-- <canvas
                 baseChart
                 [data]="servicedata"
-                [type]="'bar'"
+                [type]="'pie'"
                 [options]="chartOptions"
               >
-              </canvas>
+              </canvas> -->
             
         </div>
 
@@ -33,13 +34,27 @@
     <!-- Enviroment Ratings button to show analytics -->
     <button (click)="clickEnvironmentR()" type="button">Environment Ratings</button> 
         <div *ngIf="EnvironmentR">
-            <canvas
+          <table class="table table-hover table-sm">
+            <thead>
+              <tr>
+                <th>Environment Rating</th>
+                <th>Total Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let env of env_rating">
+                <td>{{env.environment_rating}}</td>
+                <td>{{env.total_count}}</td>
+              </tr>
+            </tbody>
+          </table>
+            <!-- <canvas
                 baseChart
                 [data]="envdata"
                 [type]="'bar'"
                 [options]="Options"
               >
-              </canvas>
+              </canvas> -->
         </div>
 
     
@@ -47,13 +62,28 @@
     <!-- Food quality Ratings button to show analytics  -->
     <button (click)="clickFoodR()" type="button">Food Quality Ratings</button>
         <div *ngIf="FoodR">
-            <canvas
+
+          <table class="table table-hover table-sm">
+            <thead>
+              <tr>
+                <th>Food Quality Rating</th>
+                <th>Total Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let food of food_rating">
+                <td>{{food.food_rating}}</td>
+                <td>{{food.total_count}}</td>
+              </tr>
+            </tbody>
+          </table>
+            <!-- <canvas
             baseChart
             [data]="dishdata"
-            [type]="'bar'"
+            [type]="'pie'"
             [options]="baropt"
           >
-          </canvas>
+          </canvas> -->
         </div> 
 
     <!-- Zip code group button to show analytics -->
@@ -85,6 +115,23 @@
     <!-- Overall rating review -->
     <button (click)="clickOverallR()" type="button">Survey Report</button>
     <div *ngIf="overallR">
+
+      <table class="table table-hover table-sm">
+        <thead>
+          <tr>
+            <th>Overall Quality Rating</th>
+            <th>Total Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let overall of over_all_serv_rating">
+            <td>{{overall.over_all_rating}}</td>
+            <td>{{overall.total_count}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
         <!-- <canvas
         baseChart
         [data]="shortReview"
