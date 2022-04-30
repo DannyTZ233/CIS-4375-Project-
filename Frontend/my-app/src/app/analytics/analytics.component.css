@@ -3,7 +3,9 @@ h1 {
   text-align: center;
 }
 
-
+#tittle {
+  font-size: 25px;
+}
 
 button{
   margin: auto;

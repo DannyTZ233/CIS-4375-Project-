@@ -1,6 +1,9 @@
 <html>
-    
-    <br><h1 id="tittle">Analytics</h1> <br> <br> <br>
+  <mat-toolbar color="primary">
+    <mat-icon>analytics </mat-icon>
+    <span id= "tittle" style="margin-left: 5px;"> Analytics</span>
+    <span class="example-spacer"></span>
+  </mat-toolbar><br>
 
     <!-- Service Ratings Button to show analytics -->
     <button (click)="clickServiceR()" type="button">Service Ratings</button> 
@@ -48,13 +51,7 @@
               </tr>
             </tbody>
           </table>
-            <!-- <canvas
-                baseChart
-                [data]="envdata"
-                [type]="'bar'"
-                [options]="Options"
-              >
-              </canvas> -->
+
         </div>
 
     
@@ -77,25 +74,13 @@
               </tr>
             </tbody>
           </table>
-            <!-- <canvas
-            baseChart
-            [data]="dishdata"
-            [type]="'pie'"
-            [options]="baropt"
-          >
-          </canvas> -->
+
         </div> 
 
     <!-- Zip code group button to show analytics -->
     <button (click)="clickZipcodeE()" type="button">Zip Code Report</button>
         <div *ngIf="zipcodebutton">
-            <!-- <canvas
-            baseChart
-            [data]="zipcodedata"
-            [type]="'bar'"
-            [options]="zipopt"
-          >
-          </canvas> -->
+
           <table class="table table-hover table-sm">
             <thead>
               <tr>
@@ -131,14 +116,6 @@
         </tbody>
       </table>
 
-
-        <!-- <canvas
-        baseChart
-        [data]="shortReview"
-        [type]="'bar'"
-        [options]="shortRopt"
-      >
-      </canvas> -->
 
     </div>
 
