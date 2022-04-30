@@ -1,0 +1,12 @@
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+
+  .survey-card {
+    max-width: 500px;
+    margin: auto;
+  }
+
+  mat-form-field {
+    width:  100%
+}
