@@ -1,6 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EmpSchedulesService } from '../API/empSchedules/emp-schedules.service';
+import { EmpScheduleService } from './employee-schedule.service';
 
 @Component({
   selector: 'app-employee-schedule',
@@ -9,18 +10,24 @@ import { EmpSchedulesService } from '../API/empSchedules/emp-schedules.service';
 })
 export class EmployeeScheduleComponent implements OnInit {
 
-  empscheds:any;
+  empscheds: any;
+  date: any;
 
   constructor(private route: Router,
-    private empSchedules: EmpSchedulesService) { }
+    private empSchedules: EmpScheduleService) { }
 
-  ngOnInit(): void {
-    this.empSchedules.getEmpSchedules()
-    .subscribe((data:any)=>{
-      this.empscheds=data.employees
-    })
+  ngOnInit(): void { }
 
+  getScheds() {
 
-  }
+    //console.log(this.date)
+    //console.log(typeof date)
+
+    this.empSchedules.getEmpScheds(this.date)
+      .subscribe((data) => {
+        this.empscheds = data.employee_schedules
+        console.log(this.empscheds)
+      })
+  };
 
 }
