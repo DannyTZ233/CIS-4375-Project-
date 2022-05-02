@@ -73,8 +73,30 @@
 
         </div> 
 
-    <!-- Zip code group button to show analytics -->
-    <button mat-raised-button (click)="clickZipcodeE()" type="button">Zip Code Report</button>
+
+
+    <!-- Overall rating review -->
+    <button mat-raised-button  (click)="clickOverallR()" type="button">Overall Quality Rating</button>
+    <div *ngIf="overallR">
+
+      <table class="table table-hover table-sm">
+        <thead>
+          <tr>
+            <th>Overall Quality Rating</th>
+            <th>Total Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let overall of over_all_serv_rating">
+            <td>{{overall.over_all_rating}}</td>
+            <td>{{overall.total_count}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+        <!-- Zip code group button to show analytics -->
+        <button mat-raised-button (click)="clickZipcodeE()" type="button">Zip Code Report</button>
         <div *ngIf="zipcodebutton">
 
           <table class="table table-hover table-sm">
@@ -92,27 +114,5 @@
             </tbody>
           </table>
         </div>
-
-    <!-- Overall rating review -->
-    <button mat-raised-button  (click)="clickOverallR()" type="button">Survey Report</button>
-    <div *ngIf="overallR">
-
-      <table class="table table-hover table-sm">
-        <thead>
-          <tr>
-            <th>Overall Quality Rating</th>
-            <th>Total Count</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let overall of over_all_serv_rating">
-            <td>{{overall.over_all_rating}}</td>
-            <td>{{overall.total_count}}</td>
-          </tr>
-        </tbody>
-      </table>
-
-
-    </div>
 
 </html> 
