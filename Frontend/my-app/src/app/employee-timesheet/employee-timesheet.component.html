@@ -1,1 +1,24 @@
-<p>employee-timesheet works!</p>
+<mat-toolbar color="primary">
+    <mat-icon>contacts </mat-icon>
+    <span style="margin-left: 5px;"> Employee Clock</span>
+    <span class="example-spacer"></span>
+
+</mat-toolbar>
+<br>
+<br>
+
+<div mat-dialog-content>
+    <h1>
+        <form>
+        <label for="employeeID">Employee ID:</label> &nbsp;
+        <input type="text" name="employeeID" [(ngModel)]="empID">
+    </form>
+    </h1>
+    
+    <br>
+    <br>
+
+
+    <button (click)="clockIn()">Clock-In</button>
+    <button (click)="clockOut()">Clock-out</button>
+</div>
