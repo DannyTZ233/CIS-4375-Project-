@@ -13,7 +13,6 @@ import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgChartsModule } from 'ng2-charts';
-import { EditEmployeeComponent } from './EmployeeInfo/edit-employee/edit-employee.component';
 import { EmployeeDetailsComponent } from './EmployeeInfo/employee-details/employee-details.component';
 import { QuitEmployeeComponent } from './EmployeeInfo/quit-employee/quit-employee.component';
 import { AddEmployeeComponent } from './EmployeeInfo/add-employee/add-employee.component';
@@ -22,6 +21,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+//import { SurveyComponent } from './Survey/survey/survey.component';
+//import { ViewSurveyComponent } from './Survey/view-survey/view-survey.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -35,9 +47,10 @@ import {MatButtonModule} from '@angular/material/button';
     AnalyticsComponent,
     AddCustomerComponent,
     AddEmployeeComponent,
-    EditEmployeeComponent,
     EmployeeDetailsComponent,
-    QuitEmployeeComponent
+    QuitEmployeeComponent,
+    //SurveyComponent,
+    //ViewSurveyComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +63,18 @@ import {MatButtonModule} from '@angular/material/button';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCardModule,
+    MatDividerModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
