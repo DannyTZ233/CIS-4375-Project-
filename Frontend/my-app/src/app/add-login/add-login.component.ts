@@ -31,13 +31,13 @@ export class AddLoginComponent implements OnInit {
     this.service.newLogin(this.form.value)
     .subscribe({
       next:(res)=>{
-        alert("New Admin Login added")
+        alert("New Manager Login added")
         this.form.reset();
         this.dialogRef.close();
       },
       error:(err)=>{
         this.form.reset();
-        alert("Error while adding Login");
+        alert("Employee is not a Manager");
       }
     })
   }
