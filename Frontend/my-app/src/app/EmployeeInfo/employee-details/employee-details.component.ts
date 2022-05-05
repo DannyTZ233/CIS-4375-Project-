@@ -18,6 +18,7 @@ export class EmployeeDetailsComponent implements OnInit {
   displayedColumns: string[] = ['ID', 'name', 'e_phone', 'e_email', 'join_date', 
   'quit_date', 'job_title', 'action'];
   dataSource!: MatTableDataSource<any>;
+  data: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -74,6 +75,12 @@ export class EmployeeDetailsComponent implements OnInit {
         this.getAllEmployees();
       }
     })
+  }
+
+  quit(row:any){
+    this.data= row
+    console.log(this.data.quit_date)
+    return this.data.quit_date !=null
   }
 
   applyFilter(event: Event) {
