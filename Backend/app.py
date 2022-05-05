@@ -192,12 +192,16 @@ def employee():
     return {"message": "employee not found"}, 404
 
 
-@app.route('/login', methods=['POST', 'PUT'])
+@app.route('/login', methods=['POST', 'PUT', 'GET'])
 def login():
     employee = request.args.get('employee', None)
     admin = request.args.get('admin', None)
     data = request.get_json()
     emp_id = request.args.get('id', None)
+    if flask.request.method == 'GET':
+        query = "SELECT * FROM employee_login"
+        res = execute_read_query_dict(mysql_get_mydb(), query)
+        return {"all_logins": res}, 200
     if flask.request.method == 'POST':
         if employee:
             emp_query = f"SELECT * FROM employee_login WHERE emp_id = '{data['emp_id']}' AND password = '{data['password']}'"
@@ -350,7 +354,9 @@ def emp_sch():
                                 res[0]['check_in_time'], "%H:%M:%S")
                 check_out_time = datetime.strptime(
                                 time, "%H:%M:%S")
+                print(check_out_time, res[0]['check_in_time'])
                 total_time = check_out_time - res[0]['check_in_time']
+                print(total_time)
                 check_out_query = f"""UPDATE employee_schedule 
                                         SET check_out_time = '{time}',
                                             total_time = '{str(total_time)}'
