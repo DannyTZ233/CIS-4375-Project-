@@ -34,6 +34,8 @@ import { ViewSurveyComponent } from './Survey/view-survey/view-survey.component'
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatRadioModule} from '@angular/material/radio';
+import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import {MatRadioModule} from '@angular/material/radio';
     EmployeeDetailsComponent,
     QuitEmployeeComponent,
     SurveyComponent,
-    ViewSurveyComponent
+    ViewSurveyComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSortModule,
     MatCardModule,
     MatDividerModule,
-    MatRadioModule
+    MatRadioModule,
+    MdbCollapseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
