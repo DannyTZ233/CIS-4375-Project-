@@ -9,16 +9,17 @@ import { AnalyticsComponent } from './analytics/analytics.component';
 import { EmployeeDetailsComponent } from './EmployeeInfo/employee-details/employee-details.component';
 import { SurveyComponent } from './Survey/survey/survey.component';
 import { ViewSurveyComponent } from './Survey/view-survey/view-survey.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
-{ path: '', component: HomePageComponent },
+{ path: '', component: HomePageComponent, canActivate:[AuthGuard] },
 { path: 'login', component: LoginPageComponent },
 { path: 'survey', component: SurveyComponent },
-{ path: 'responses', component: ViewSurveyComponent },
-{ path: 'timesheet', component: EmployeeTimesheetComponent },
-{ path: 'schedule', component: EmployeeScheduleComponent },
-{ path: 'analytics', component: AnalyticsComponent },
-{ path: 'employees', component: EmployeeDetailsComponent },
+{ path: 'responses', component: ViewSurveyComponent, canActivate:[AuthGuard] },
+{ path: 'timesheet', component: EmployeeTimesheetComponent, canActivate:[AuthGuard] },
+{ path: 'schedule', component: EmployeeScheduleComponent, canActivate:[AuthGuard] },
+{ path: 'analytics', component: AnalyticsComponent, canActivate:[AuthGuard] },
+{ path: 'employees', component: EmployeeDetailsComponent, canActivate:[AuthGuard] },
 ];
 
 @NgModule({

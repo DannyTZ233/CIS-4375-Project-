@@ -7,6 +7,10 @@ p {
   text-align: center;
 }
 
+img{
+  justify-content: center;
+}
+
 legend {
   text-align: left;
   font-weight: 700;
@@ -65,4 +69,11 @@ textarea {
   box-shadow: 0 2px #999;
   display: flex;
   display: grid;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }

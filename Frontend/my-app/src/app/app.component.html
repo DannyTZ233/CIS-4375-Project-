@@ -1,38 +1,73 @@
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Wasabi Bistro</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a routerLink="/" class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/login" class="nav-link" href="#">Login</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/survey" class="nav-link" href="#">Survey</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/responses" class="nav-link" href="#">Responses</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/timesheet" class="nav-link" href="#">Timesheet</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/schedule" class="nav-link" href="#">Schedule</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/employees" class="nav-link" href="#">Employees</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/analytics" class="nav-link" href="#">Analytics</a>
-          </li>
-        </ul>
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">
+      <img
+        src="../assets/logo.PNG"
+        class="me-2"
+        height="20"
+        alt=""
+        loading="lazy"
+      />
+      <small>Wasabi Bistro</small>
+    </a>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler bg-light"
+      type="button"
+      (click)="basicNavbar.toggle()"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      *ngIf="canSee()"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div
+      class="collapse navbar-collapse"
+      id="navbarSupportedContent"
+      mdbCollapse
+      #basicNavbar="mdbCollapse"
+    >
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="canSee()">
+        <li class="nav-item">
+          <a routerLink="/" class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/responses" class="nav-link" href="#">Responses</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/timesheet" class="nav-link" href="#">Timesheet</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/schedule" class="nav-link" href="#">Schedule</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/employees" class="nav-link" href="#">Employees</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/analytics" class="nav-link" href="#">Analytics</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+
+      <div class="d-flex align-items-center" *ngIf="canSee()">
+        <button type="button" class="btn btn-primary btn-sm me-2" (click)="logout()">
+          Logout
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm me-3" (click)="change()">
+          Change Password
+        </button>
       </div>
     </div>
-  </nav>
-  
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
   <router-outlet></router-outlet>
