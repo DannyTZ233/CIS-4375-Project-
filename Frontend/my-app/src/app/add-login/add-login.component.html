@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Add Admin Login</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Enter ID</mat-label>
+            <input type="text" matInput placeholder="ID" formControlName="emp_id">
+          </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Enter Password</mat-label>
+            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+          </mat-form-field>
+        </form>     
+    </div>
+    <div mat-dialog-action [align]="'end'">
+        <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+        <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="add()">Save</button>
+    </div>

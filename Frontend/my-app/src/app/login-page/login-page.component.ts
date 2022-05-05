@@ -10,7 +10,6 @@ import { LoginService } from './login.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  currenttime = Date();
   error!: false;
   form!: FormGroup;
   hide = true;
@@ -40,6 +39,7 @@ export class LoginPageComponent implements OnInit {
           },
           error:()=>{
             alert("Login Failed")
+            this.form.reset();
           }
         });
     }

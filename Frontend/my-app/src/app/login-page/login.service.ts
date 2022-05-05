@@ -12,10 +12,14 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   postLogin(data: any){
-    return this.http.post<any>(this.baseURL+'login', data);
+    return this.http.post<any>(this.baseURL+'login?admin=True', data);
   }
 
   putLogin(data:any, id: number){
     return this.http.put<any>(this.baseURL+`login?id=${id}`, data)
+  }
+
+  newLogin(data: any){
+    return this.http.post<any>(this.baseURL+'login', data);
   }
 }

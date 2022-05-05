@@ -36,6 +36,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatRadioModule} from '@angular/material/radio';
 import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { AddLoginComponent } from './add-login/add-login.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     QuitEmployeeComponent,
     SurveyComponent,
     ViewSurveyComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    AddLoginComponent
   ],
   imports: [
     BrowserModule,
