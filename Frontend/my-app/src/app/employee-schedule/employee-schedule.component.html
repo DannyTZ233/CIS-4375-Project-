@@ -9,9 +9,9 @@
 <div style="text-align:center">
     <label for="sched">Choose date:</label>
     
-    <input  type="date" id="sched" [(ngModel)]="date" min="2022-03-01" max="2050-03-01" required>
+    <input style="margin-left: 5px;"  type="date" id="sched" [(ngModel)]="date" min="2022-03-01" max="2050-03-01" required>
     <span class="validity"></span>
-    <button (click)="getScheds()">Submit</button>
+    <button mat-button color="accent" style="margin-left: 3px;" (click)="getScheds()">Submit</button>
     
 </div>
 <br>
