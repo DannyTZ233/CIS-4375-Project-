@@ -15,7 +15,7 @@ import { QuitEmployeeComponent } from '../quit-employee/quit-employee.component'
 })
 export class EmployeeDetailsComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'e_phone', 'e_email', 'join_date', 
+  displayedColumns: string[] = ['ID', 'name', 'e_phone', 'e_email', 'join_date', 
   'quit_date', 'job_title', 'action'];
   dataSource!: MatTableDataSource<any>;
 
