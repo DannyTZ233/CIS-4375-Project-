@@ -37,7 +37,7 @@ export class AddLoginComponent implements OnInit {
       },
       error:(err)=>{
         this.form.reset();
-        alert("Employee is not a Manager");
+        alert("Employee login could not be added");
       }
     })
   }
