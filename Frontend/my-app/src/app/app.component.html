@@ -21,6 +21,7 @@
       (click)="basicNavbar.toggle()"
       aria-expanded="false"
       aria-label="Toggle navigation"
+      *ngIf="canSee()"
     >
       <i class="fas fa-bars"></i>
     </button>
