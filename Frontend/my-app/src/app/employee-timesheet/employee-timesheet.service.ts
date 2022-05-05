@@ -17,14 +17,10 @@ export class EmployeeTimesheetService {
 
   postClockIn(data: any, id: any){
     return this.http.post<any>(this.baseURL+`employee-schedule?id=${id}`, data)
-    .subscribe((res)=>{
-        alert("Employee clocked-in successfully")});
   }
 
   putClockOut(data:any, id: any){
     return this.http.put<any>(this.baseURL+`employee-schedule?id=${id}`, data)
-    .subscribe((res)=>{
-      alert("Employee clocked-out successfully")});
     
   }
 

@@ -16,8 +16,8 @@ const routes: Routes = [
 { path: 'login', component: LoginPageComponent },
 { path: 'survey', component: SurveyComponent },
 { path: 'responses', component: ViewSurveyComponent, canActivate:[AuthGuard] },
-{ path: 'timesheet', component: EmployeeTimesheetComponent, canActivate:[AuthGuard] },
-{ path: 'schedule', component: EmployeeScheduleComponent, canActivate:[AuthGuard] },
+{ path: 'clockinout', component: EmployeeTimesheetComponent, canActivate:[AuthGuard] },
+{ path: 'timesheet', component: EmployeeScheduleComponent, canActivate:[AuthGuard] },
 { path: 'analytics', component: AnalyticsComponent, canActivate:[AuthGuard] },
 { path: 'employees', component: EmployeeDetailsComponent, canActivate:[AuthGuard] },
 ];

@@ -21,6 +21,7 @@
 <table class="table">
     <thead>
         <tr>
+            <th scope="col">ID</th>
             <th scope="col">Employee</th>
             <th scope="col">Check-in</th>
             <th scope="col">Check-out</th>
@@ -30,6 +31,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let item of empscheds  ">
+            <td>{{item.emp_id}}</td>
             <td>{{item.e_first_name}} {{item.e_last_name}}</td>
             <td>{{item.check_in_time}}</td>
             <td>{{item.check_out_time}}</td>
