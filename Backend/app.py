@@ -120,7 +120,7 @@ def employee():
             if res:
                 for i in res:
                     if i['join_date'] != None:
-                        i['join_date'] = i['join_date'].strftime("%m/%d/%Y")
+                        i['join_date'] = i['join_date'].strftime("%m-%d-%Y")
                 return {'employees': res}, 200
     if flask.request.method == 'POST':
         data = request.get_json()
@@ -147,19 +147,6 @@ def employee():
     
     if flask.request.method =='PUT':
         data = request.get_json()
-        query = f"SELECT * FROM employee WHERE emp_id='{emp_id}'"
-        res = execute_read_query(mysql_get_mydb(), query)
-        if res:
-            update_query = f"""
-                    UPDATE employee 
-                    SET e_first_name = '{data['e_first_name']}',
-                    e_last_name = '{data['e_last_name']}',
-                    e_phone = '{data['e_phone']}',
-                    e_email = '{data['e_email']}',
-                    job_title = '{data['job_title']}'
-                    WHERE emp_id = '{emp_id}'"""
-            execute_query(mysql_get_mydb(), update_query)
-            return {'message': 'record updated'}, 201
         if quit_checker:
             today = date.today().strftime("%m/%d/%Y")
             query = f"SELECT * FROM employee WHERE emp_id='{emp_id}'"
@@ -189,6 +176,19 @@ def employee():
                 update_query = f"UPDATE employee SET job_title = '{pos}' WHERE emp_id = '{emp_id}'"
                 execute_query(mysql_get_mydb(), update_query)
                 return {'message': 'record updated'}, 201
+        query = f"SELECT * FROM employee WHERE emp_id='{emp_id}'"
+        res = execute_read_query(mysql_get_mydb(), query)
+        if res:
+            update_query = f"""
+                    UPDATE employee 
+                    SET e_first_name = '{data['e_first_name']}',
+                    e_last_name = '{data['e_last_name']}',
+                    e_phone = '{data['e_phone']}',
+                    e_email = '{data['e_email']}',
+                    job_title = '{data['job_title']}'
+                    WHERE emp_id = '{emp_id}'"""
+            execute_query(mysql_get_mydb(), update_query)
+            return {'message': 'record updated'}, 201
     return {"message": "employee not found"}, 404
 
 
@@ -204,6 +204,7 @@ def login():
             emp_res = execute_read_query(mysql_get_mydb(), emp_query)
             if emp_res:
                 return {"login": "success"}, 200
+            return {"login": "failed"}, 404
         elif admin:
             position_query = f"SELECT job_title FROM employee WHERE emp_id = '{data['emp_id']}'"
             position_res = execute_read_query_dict(mysql_get_mydb(), position_query)
@@ -213,18 +214,25 @@ def login():
                 admin_res = execute_read_query(mysql_get_mydb(), admin_query)
                 if admin_res:
                     return {"login": "success"}, 200
+                return {"login": "failed"}, 404
             else:
                 return {"message": "premission denied"}, 401
         else:
-            find_query = f"SELECT * FROM employee WHERE emp_id = '{data['emp_id']}'"
+            find_query = f"SELECT * FROM employee_login WHERE emp_id = '{data['emp_id']}'"
             find_res = execute_read_query(mysql_get_mydb(), find_query)
-            if find_res:
-                insert = f"INSERT INTO employee_login (emp_id, password) VALUES('{data['emp_id']}', '{data['password']}')"
-                execute_query(mysql_get_mydb(), insert)
-                return {"message": "record created"}, 201
+            if not find_res:
+                position_query = f"SELECT job_title FROM employee WHERE emp_id = '{data['emp_id']}'"
+                position_res = execute_read_query_dict(mysql_get_mydb(), position_query)
+                position = position_res[0]['job_title']
+                if position.lower() == 'manager':
+                    insert = f"INSERT INTO employee_login (emp_id, password) VALUES('{data['emp_id']}', '{data['password']}')"
+                    execute_query(mysql_get_mydb(), insert)
+                    return {"message": "record created"}, 201
+                else:
+                    return {"message": "employee permission denied"}, 404
             else: 
-                return {"message": "employee not found"}, 404
-        return {"login": "failed"}, 404
+                return {"message": "employee login already exist"}, 404
+        # return {"login": "failed"}, 404
     if flask.request.method == 'PUT':
         if emp_id and data['password']:
             query = f"SELECT * FROM employee_login WHERE emp_id='{emp_id}'"
@@ -233,10 +241,10 @@ def login():
                 update = f"UPDATE employee_login SET password = '{data['password']}' WHERE emp_id = '{emp_id}'"
                 execute_query(mysql_get_mydb(), update)
                 return {"message": "record updated"}
-            else:
-                insert = f"INSERT INTO employee_login (emp_id, password) VALUES('{emp_id}', '{data['password']}')"
-                execute_query(mysql_get_mydb(), insert)
-                return {"message": "record created"}, 201
+            # else:
+            #     insert = f"INSERT INTO employee_login (emp_id, password) VALUES('{emp_id}', '{data['password']}')"
+            #     execute_query(mysql_get_mydb(), insert)
+            #     return {"message": "record created"}, 201
         return {"message": "employee not found"}, 404
 
 
@@ -265,9 +273,9 @@ def emp_sch():
                 WHERE es.emp_id='{emp_id}' AND log_datetime LIKE '{clock_date}%'"""
                 res1 = execute_read_query_dict(mysql_get_mydb(), check_query)
                 if res1:
-                    for i in res1:
-                        if i['log_datetime'] != None:
-                            i['log_datetime'] = i['log_datetime'].strftime("%Y-%m-%d")
+                    # for i in res1:
+                    #     if i['log_datetime'] != None:
+                    #         i['log_datetime'] = i['log_datetime'].strftime("%Y-%m-%d")
                     return {"employee": res1}, 200
                 else:
                     return {"employee": "NULL"}, 200
@@ -285,10 +293,10 @@ def emp_sch():
                 JOIN employee e
                 ON es.emp_id = e.emp_id"""
             all_res = execute_read_query_dict(mysql_get_mydb(), query)
-            for i in all_res:
-                        if i['log_datetime'] != None:
-                            i['log_datetime'] = i['log_datetime'].strftime("%Y-%m-%d")
-            return {"employee schedules": all_res}, 200
+            # for i in all_res:
+            #             if i['log_datetime'] != None:
+            #                 i['log_datetime'] = i['log_datetime'].strftime("%Y-%m-%d")
+            return {"employee_schedules": all_res}, 200
         if clock_date:
             query = f"""SELECT 
                 es.emp_id, 
@@ -304,10 +312,10 @@ def emp_sch():
                 ON es.emp_id = e.emp_id
                 WHERE log_datetime LIKE '{clock_date}%'"""
             all_res = execute_read_query_dict(mysql_get_mydb(), query)
-            for i in all_res:
-                        if i['log_datetime'] != None:
-                            i['log_datetime'] = i['log_datetime'].strftime("%Y-%m-%d")
-            return {"employee schedules": all_res}, 200
+            # for i in all_res:
+            #             if i['log_datetime'] != None:
+            #                 i['log_datetime'] = i['log_datetime'].strftime("%Y-%m-%d")
+            return {"employee_schedules": all_res}, 200
     if flask.request.method == 'POST':
         today = date.today().strftime("%Y-%m-%d")
         print(today)
@@ -321,8 +329,8 @@ def emp_sch():
                 print(time)
                 insert = f"""
                         INSERT INTO employee_schedule
-                        (emp_id, check_in_time) \
-                        VALUES('{emp_id}', '{time}')"""
+                        (emp_id, check_in_time, log_datetime) \
+                        VALUES('{emp_id}', '{time}', '{today}')"""
                 execute_query(mysql_get_mydb(), insert)
                 return {'message': 'record added'}, 200
             return {"message": "employee already check in"}, 400
@@ -426,7 +434,9 @@ def survey_report():
             data = io.BytesIO()
             im.save(data, "PNG")
             encoded_img_data = base64.b64encode(data.getvalue())
-            return render_template('index.html', img_data=encoded_img_data.decode('utf-8'))
+            img_data=encoded_img_data.decode('utf-8')
+            # return render_template('index.html', img_data=encoded_img_data.decode('utf-8'))
+            return {"wordcloud_data": img_data}
         return {"message": "data not found"}, 404
 
 
