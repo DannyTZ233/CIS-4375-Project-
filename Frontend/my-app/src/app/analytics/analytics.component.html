@@ -115,4 +115,9 @@
           </table>
         </div>
 
+        <button mat-raised-button (click)="clickWordcloud()" type="button">Word Cloud</button>
+        <div *ngIf="showWordcloud">
+          <img src="data:image/jpeg;base64,{{image}}"/>
+        </div>
+
 </html> 

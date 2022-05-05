@@ -6,6 +6,7 @@ import {CountFoodRating} from '../API/surveyReport/foodRatingReport/food-rating.
 import {CountEnvironmentRating} from '../API/surveyReport/envRatingReport/environment-rating.service';
 import { CountServiceRating } from '../API/surveyReport/serviceReport/service-rating.service';
 import { CountOverallRating } from '../API/surveyReport/overallRatingReport/overall-rating.service';
+import { WordcloudService } from '../wordcloud.service';
 
 @Component({
   selector: 'app-analytics',
@@ -19,6 +20,7 @@ export class AnalyticsComponent implements OnInit {
   env_rating: any;
   service_rating: any;
   over_all_serv_rating: any;
+  image:any;
 
 
   constructor(private route: Router,
@@ -26,7 +28,8 @@ export class AnalyticsComponent implements OnInit {
     private foodRatingCount:CountFoodRating,
     private envRatingCount: CountEnvironmentRating,
     private serviceRatingCount: CountServiceRating,
-    private overallRatingCount: CountOverallRating
+    private overallRatingCount: CountOverallRating,
+    private wordCloudService: WordcloudService
      ) { }
 
 
@@ -54,6 +57,12 @@ export class AnalyticsComponent implements OnInit {
     this.overallRatingCount.getOverallRating()
     .subscribe((data:any)=>{
       this.over_all_serv_rating=data.over_all_serv_rating
+    })
+
+    this.wordCloudService.getWordCloud()
+    .subscribe((data:any)=>{
+      this.image = data.wordcloud_data
+      console.log(this.image);
     })
 
   }
@@ -96,6 +105,12 @@ export class AnalyticsComponent implements OnInit {
 overallR=false;
 clickOverallR(){
   this.overallR=!this.overallR;
+}
+
+//button for wordcloud
+showWordcloud=false;
+clickWordcloud(){
+  this.showWordcloud=!this.showWordcloud;
 }
 
 
