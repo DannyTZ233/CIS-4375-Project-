@@ -5,39 +5,39 @@ import { Router } from '@angular/router';
 import { LoginService } from '../login-page/login.service';
 
 @Component({
-  selector: 'app-change-password',
-  templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.css']
+  selector: 'app-add-login',
+  templateUrl: './add-login.component.html',
+  styleUrls: ['./add-login.component.css']
 })
-export class ChangePasswordComponent implements OnInit {
+export class AddLoginComponent implements OnInit {
 
   form!: FormGroup;
   hide = true;
 
   constructor(private formBuilder: FormBuilder,
     private service: LoginService,
-    private dialogRef: MatDialogRef<ChangePasswordComponent>,
-    private route: Router) {
+    private dialogRef: MatDialogRef<AddLoginComponent>,
+    private route: Router) { 
       this.form = this.formBuilder.group({
+        emp_id : ['', Validators.required],
         password : ['', Validators.required]
       });
-     }
+    }
 
   ngOnInit(): void {
   }
 
-  change(){
-    this.service.putLogin(this.form.value,2)
+  add(){
+    this.service.newLogin(this.form.value)
     .subscribe({
       next:(res)=>{
-        alert("Password updated successfully; you must now login with your new password")
+        alert("New Admin Login added")
         this.form.reset();
         this.dialogRef.close();
-        this.route.navigate(['login'])
-        localStorage.clear()
       },
       error:(err)=>{
-        alert("Error while updating password")
+        this.form.reset();
+        alert("Error while adding Login");
       }
     })
   }

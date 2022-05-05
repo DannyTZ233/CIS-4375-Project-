@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AddLoginComponent } from './add-login/add-login.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { MasterService } from './master.service';
 
@@ -27,6 +28,12 @@ export class AppComponent {
 
   change(){
     this.dialog.open(ChangePasswordComponent, {
+      width:'30%'
+    })
+  }
+
+  add(){
+    this.dialog.open(AddLoginComponent, {
       width:'30%'
     })
   }
