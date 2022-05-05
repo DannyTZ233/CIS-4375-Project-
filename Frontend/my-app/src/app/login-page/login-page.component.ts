@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EmployeeIdService } from '../employee-id.service';
 import { LoginService } from './login.service';
 
 @Component({
@@ -10,13 +11,15 @@ import { LoginService } from './login.service';
 })
 export class LoginPageComponent implements OnInit {
 
+  currentEmpId!: number;
   error!: false;
   form!: FormGroup;
   hide = true;
 
   constructor(private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private router: Router) { 
+    private router: Router,
+    private employeeIdService: EmployeeIdService) { 
       this.form = this.formBuilder.group({
         emp_id : ['', Validators.required],
         password: ['', Validators.required]
@@ -24,6 +27,7 @@ export class LoginPageComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.employeeIdService.currentLoggedInEmp.subscribe(emp_id => this.currentEmpId = emp_id);
   }
 
   submit(){
@@ -32,6 +36,8 @@ export class LoginPageComponent implements OnInit {
         this.form.value)
         .subscribe({
           next:(res)=>{
+            console.log(this.form.value.emp_id)
+            this.employeeIdService.updateLoggedInEmp(this.form.value.emp_id)
             alert("Successfully Logged In")
             this.form.reset();
             this.router.navigate([""])
