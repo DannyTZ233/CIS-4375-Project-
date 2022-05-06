@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeTimesheetComponent } from './employee-timesheet/employee-timesheet.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { CustomerInfoComponent } from './customer-info/customer-info.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { EmployeeScheduleComponent } from './employee-schedule/employee-schedule.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
