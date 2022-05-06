@@ -102,9 +102,9 @@ def employee():
                     WHERE e.emp_id = '{emp_id}'"""
             res = execute_read_query_dict(mysql_get_mydb(), query)
             if res:
-                for i in res:
-                    if i['join_date'] != None:
-                        i['join_date'] = i['join_date'].strftime("%Y-%m-%d")
+                # for i in res:
+                #     if i['join_date'] != None:
+                #         i['join_date'] = i['join_date'].strftime("%Y-%m-%d")
                 return {"employee": res}, 200
         if employees:
             query = f"""SELECT 
@@ -118,21 +118,22 @@ def employee():
             res = execute_read_query_dict(mysql_get_mydb(), query)
             print(res)
             if res:
-                for i in res:
-                    if i['join_date'] != None:
-                        i['join_date'] = i['join_date'].strftime("%m-%d-%Y")
+                # for i in res:
+                #     if i['join_date'] != None:
+                #         i['join_date'] = i['join_date'].strftime("%m-%d-%Y")
                 return {'employees': res}, 200
     if flask.request.method == 'POST':
         data = request.get_json()
+        today = date.today().strftime("%Y-%m-%d")
         query = f"SELECT * FROM employee WHERE e_phone = '{data['e_phone']}'"
         res = execute_read_query(mysql_get_mydb(), query)
         if res:
             return {'message': "employee already exists in the database"}, 400
         insert = f"""
                 INSERT INTO employee
-                (e_first_name, e_last_name, e_phone, e_email, job_title, store_id) \
+                (e_first_name, e_last_name, e_phone, e_email, job_title, store_id, join_date) \
                 VALUES('{data['e_first_name']}', '{data['e_last_name']}', '{data['e_phone']}', 
-                '{data['e_email']}', '{data['job_title']}', '{data['store_id']}')"""
+                '{data['e_email']}', '{data['job_title']}', '{data['store_id']}', '{today}')"""
         execute_query(mysql_get_mydb(), insert)
         return {'message': 'record added'}, 200
 
@@ -148,7 +149,7 @@ def employee():
     if flask.request.method =='PUT':
         data = request.get_json()
         if quit_checker:
-            today = date.today().strftime("%m/%d/%Y")
+            today = date.today().strftime("%Y-%m-%d")
             query = f"SELECT * FROM employee WHERE emp_id='{emp_id}'"
             res = execute_read_query(mysql_get_mydb(), query)
             if res:
@@ -348,8 +349,13 @@ def emp_sch():
             print(out_res[0][0])
             if not out_res[0][0]:
                 time = datetime.now().strftime("%H:%M:%S")
-                get_time_query = f"SELECT check_in_time FROM employee_schedule WHERE emp_id = {emp_id}"
+                
+                get_time_query = f"SELECT check_in_time FROM employee_schedule WHERE emp_id = {emp_id} AND log_datetime LIKE '{today}%'"
                 res = execute_read_query_dict(mysql_get_mydb(), get_time_query)
+                print(time)
+                print(res)
+                print(res[0])
+                print(res[0]['check_in_time'])
                 res[0]['check_in_time'] = datetime.strptime(
                                 res[0]['check_in_time'], "%H:%M:%S")
                 check_out_time = datetime.strptime(
