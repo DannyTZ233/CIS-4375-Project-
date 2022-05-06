@@ -25,6 +25,16 @@
               </tr>
             </tbody>
           </table>
+          <br>
+
+          <div style="width: 600px; height: 400px">
+            <canvas baseChart
+            [datasets]="servChartData"
+            [options]="servoptions"
+            [labels]="servlabels"
+            [type]="'bar'">
+            </canvas>
+        </div>
 
             
         </div>
@@ -47,6 +57,15 @@
               </tr>
             </tbody>
           </table>
+          <br>
+          <div style="width: 600px; height: 400px">
+            <canvas baseChart
+            [datasets]="envChartData"
+            [options]="envoptions"
+            [labels]="envlabels"
+            [type]="'bar'">
+            </canvas>
+        </div>
 
         </div>
 
@@ -70,6 +89,16 @@
               </tr>
             </tbody>
           </table>
+          <br>
+
+          <div style="width: 600px; height: 400px">
+            <canvas baseChart
+            [datasets]="foodChartData"
+            [options]="foodoptions"
+            [labels]="foodlabels"
+            [type]="'bar'">
+            </canvas>
+        </div>
 
         </div> 
 
@@ -93,6 +122,16 @@
           </tr>
         </tbody>
       </table>
+      <br>
+
+      <div style="width: 600px; height: 400px">
+        <canvas baseChart
+        [datasets]="allChartData"
+        [options]="alloptions"
+        [labels]="alllabels"
+        [type]="'bar'">
+        </canvas>
+    </div>
     </div>
 
         <!-- Zip code group button to show analytics -->
@@ -113,6 +152,16 @@
               </tr>
             </tbody>
           </table>
+          <br>
+
+          <div style="width: 600px; height: 400px">
+            <canvas baseChart
+            [datasets]="zipChartData"
+            [options]="zipoptions"
+            [labels]="ziplabels"
+            [type]="'bar'">
+            </canvas>
+        </div>
         </div>
 
         <button mat-raised-button (click)="clickWordcloud()" type="button">Word Cloud</button>
